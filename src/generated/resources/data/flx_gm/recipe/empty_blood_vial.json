@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": "minecraft:glass_bottle",
+    "I": "minecraft:iron_nugget",
+    "R": "minecraft:redstone"
+  },
+  "pattern": [
+    " I ",
+    "RBR",
+    " R "
+  ],
+  "result": {
+    "id": "flx_gm:empty_blood_vial"
+  }
+}

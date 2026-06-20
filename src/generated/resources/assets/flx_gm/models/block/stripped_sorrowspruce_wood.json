@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "flx_gm:block/stripped_sorrowspruce_log",
+    "side": "flx_gm:block/stripped_sorrowspruce_log"
+  }
+}

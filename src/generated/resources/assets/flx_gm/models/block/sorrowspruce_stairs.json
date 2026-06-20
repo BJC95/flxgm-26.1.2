@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "flx_gm:block/sorrowspruce_planks",
+    "side": "flx_gm:block/sorrowspruce_planks",
+    "top": "flx_gm:block/sorrowspruce_planks"
+  }
+}

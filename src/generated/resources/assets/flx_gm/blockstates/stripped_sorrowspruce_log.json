@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "flx_gm:block/stripped_sorrowspruce_log",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "flx_gm:block/stripped_sorrowspruce_log"
+    },
+    "axis=z": {
+      "model": "flx_gm:block/stripped_sorrowspruce_log",
+      "x": 90
+    }
+  }
+}

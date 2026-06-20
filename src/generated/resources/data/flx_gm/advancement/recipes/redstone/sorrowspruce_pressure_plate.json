@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_sorrowspruce_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "flx_gm:sorrowspruce_planks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "flx_gm:sorrowspruce_pressure_plate"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_sorrowspruce_planks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "flx_gm:sorrowspruce_pressure_plate"
+    ]
+  }
+}

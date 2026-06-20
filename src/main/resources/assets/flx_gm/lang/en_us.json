@@ -1,0 +1,31 @@
+{
+  "item.flx_gm.evoker_fang": "Evoker Fang",
+  "item.flx_gm.blood_vial": "Blood Vial",
+  "item.flx_gm.empty_blood_vial": "Empty Blood Vial",
+  "item.flx_gm.hyperdontia_bottle": "Enamel Bottle",
+
+  "item.flx_gm.enamel_controller": "Creative Enamel Controller",
+
+  "block.flx_gm.sorrowspruce_log": "Sorrowspruce Log",
+  "block.flx_gm.sorrowspruce_planks": "Sorrowspruce Planks",
+  "block.flx_gm.sorrowspruce_wood": "Sorrowspruce Wood",
+  "block.flx_gm.sorrowspruce_slab": "Sorrowspruce Slab",
+  "block.flx_gm.sorrowspruce_stairs": "Sorrowspruce Stairs",
+  "block.flx_gm.sorrowspruce_pressure_plate": "Sorrowspruce Pressure Plate",
+  "block.flx_gm.sorrowspruce_button": "Sorrowspruce Button",
+  "block.flx_gm.sorrowspruce_fence": "Sorrowspruce Fence",
+  "block.flx_gm.sorrowspruce_fence_gate": "Sorrowspruce Fence Gate",
+  "block.flx_gm.stripped_sorrowspruce_log": "Stripped Sorrowspruce Log",
+  "block.flx_gm.stripped_sorrowspruce_wood": "Stripped Sorrowspruce Wood",
+  "block.flx_gm.primary_dental_pedestal": "Primary Dental Pedestal",
+  "block.flx_gm.secondary_dental_pedestal": "Secondary Dental Pedestal",
+  "block.flx_gm.tertiary_dental_pedestal": "Tertiary Dental Pedestal",
+
+  "effect.flx_gm.hyperdontia": "Hyperdontia",
+
+
+  "tooltip.flx_gm.blood_vial": "Contains the blood of ",
+  "tooltip.flx_gm.blood_vial_unknown": "an Unknown Entity",
+
+  "creativetab.GnawedMajiks.gnawedmajikstab": "Gnawed Majiks"
+}

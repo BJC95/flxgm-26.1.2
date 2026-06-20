@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "flx_gm:block/sorrowspruce_slab"
+    },
+    "type=double": {
+      "model": "flx_gm:block/sorrowspruce_planks"
+    },
+    "type=top": {
+      "model": "flx_gm:block/sorrowspruce_slab_top"
+    }
+  }
+}

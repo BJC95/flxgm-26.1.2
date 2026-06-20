@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "flx_gm:block/secondary_dental_pedestal_top",
+    "east": "flx_gm:block/secondary_dental_pedestal_side",
+    "north": "flx_gm:block/secondary_dental_pedestal_side",
+    "particle": "flx_gm:block/secondary_dental_pedestal_side",
+    "south": "flx_gm:block/secondary_dental_pedestal_side",
+    "up": "flx_gm:block/secondary_dental_pedestal_top",
+    "west": "flx_gm:block/secondary_dental_pedestal_side"
+  }
+}

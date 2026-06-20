@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "flx_gm:block/sorrowspruce_planks"
+  }
+}

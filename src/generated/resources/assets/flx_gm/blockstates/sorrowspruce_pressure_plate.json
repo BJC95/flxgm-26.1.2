@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "flx_gm:block/sorrowspruce_pressure_plate"
+    },
+    "powered=true": {
+      "model": "flx_gm:block/sorrowspruce_pressure_plate_down"
+    }
+  }
+}

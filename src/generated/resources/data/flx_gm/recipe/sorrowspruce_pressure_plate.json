@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": "flx_gm:sorrowspruce_planks"
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "id": "flx_gm:sorrowspruce_pressure_plate"
+  }
+}

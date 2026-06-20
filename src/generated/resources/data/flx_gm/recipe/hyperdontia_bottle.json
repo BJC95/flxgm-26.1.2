@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "flx_gm:blood_vial",
+    "flx_gm:evoker_fang"
+  ],
+  "result": {
+    "id": "flx_gm:hyperdontia_bottle"
+  }
+}
