@@ -1,0 +1,17 @@
+{
+  "type": "flx_gm:ritual",
+  "ingredients": [
+    "flx_gm:blood_vial",
+    "flx_gm:evoker_fang",
+    "flx_gm:evoker_fang",
+    "flx_gm:evoker_fang",
+    "flx_gm:evoker_fang",
+    "flx_gm:evoker_fang",
+    "flx_gm:evoker_fang",
+    "flx_gm:evoker_fang",
+    "flx_gm:evoker_fang"
+  ],
+  "result": {
+    "id": "minecraft:slime_ball"
+  }
+}

@@ -1,6 +1,7 @@
 package net.fluxedmod.gnawedmajiks.block.custom;
 
 import com.mojang.serialization.MapCodec;
+import net.fluxedmod.gnawedmajiks.block.entity.ModBlockEntities;
 import net.fluxedmod.gnawedmajiks.block.entity.custom.PriPedestalBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -12,6 +13,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.transfer.item.ItemResource;
@@ -28,6 +31,7 @@ public class PriPedestalBlock extends AbstractPedestalBlock{
     public @Nullable BlockEntity newBlockEntity(BlockPos worldPosition, BlockState blockState) {
         return new PriPedestalBlockEntity(worldPosition, blockState);
     }
+
 
     @Override
     protected InteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
@@ -46,7 +50,7 @@ public class PriPedestalBlock extends AbstractPedestalBlock{
                 ItemStack stackOnPedestal = pedestalBlockEntity.inventory.getResource(0).toStack();
                 pedestalBlockEntity.clearContents();
 
-                if(!player.getInventory().add(stackOnPedestal)) {
+                if (!player.getInventory().add(stackOnPedestal)) {
                     player.drop(stackOnPedestal, false);
                 }
 
@@ -57,5 +61,16 @@ public class PriPedestalBlock extends AbstractPedestalBlock{
         }
 
         return InteractionResult.SUCCESS;
+    }
+
+
+    @Override
+    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> type) {
+        if(level.isClientSide()) {
+            return null;
+        }
+
+        return createTickerHelper(type, ModBlockEntities.PRI_PEDESTAL_BE.get(),
+                (level1, pos, state, entity) -> entity.tick(level1, pos, state));
     }
 }

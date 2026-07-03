@@ -7,6 +7,7 @@ import net.fluxedmod.gnawedmajiks.block.entity.ModBlockEntities;
 import net.fluxedmod.gnawedmajiks.creativetab.ModCreativeModeTabs;
 import net.fluxedmod.gnawedmajiks.effect.ModEffects;
 import net.fluxedmod.gnawedmajiks.item.ModItems;
+import net.fluxedmod.gnawedmajiks.recipe.ModRecipes;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -38,6 +39,8 @@ public class GnawedMajiks {
 
         ModAttachmentTypes.register(modEventBus);
         ModEffects.register(modEventBus);
+
+        ModRecipes.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
 
