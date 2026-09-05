@@ -3,6 +3,7 @@ package net.fluxedmod.gnawedmajiks.datagen;
 import net.fluxedmod.gnawedmajiks.GnawedMajiks;
 import net.fluxedmod.gnawedmajiks.block.ModBlocks;
 import net.fluxedmod.gnawedmajiks.item.ModItems;
+import net.fluxedmod.gnawedmajiks.tag.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -53,6 +54,10 @@ public class ModRecipeProvider extends RecipeProvider  {
                 .save(output);
 
         // SORROWSPRUCE
+        woodFromLogs(ModBlocks.SORROWSPRUCE_WOOD, ModBlocks.SORROWSPRUCE_LOG);
+        woodFromLogs(ModBlocks.STRIPPED_SORROWSPRUCE_WOOD, ModBlocks.STRIPPED_SORROWSPRUCE_LOG);
+        planksFromLog(ModBlocks.SORROWSPRUCE_PLANKS, ModTags.Items.SORROWSPRUCE_LOGS, 4);
+
         stairBuilder(ModBlocks.SORROWSPRUCE_STAIRS.get(), Ingredient.of(ModBlocks.SORROWSPRUCE_PLANKS.get()))
                 .unlockedBy(getHasName(ModBlocks.SORROWSPRUCE_PLANKS.get()), has(ModBlocks.SORROWSPRUCE_PLANKS.get()))
                 .save(output);

@@ -25,6 +25,7 @@ public class GnawedMajiksDataGenerators {
         generator.addProvider(true, new LootTableProvider(packOutput, Collections.emptySet(),
                 List.of(new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
         generator.addProvider(true, new ModBlockTagProvider(packOutput, lookupProvider));
+        generator.addProvider(true, new ModItemTagProvider(packOutput, lookupProvider));
         generator.addProvider(true, new ModRecipeProvider.Runner(packOutput, lookupProvider));
         generator.addProvider(true, new ModDataMapProvider(packOutput, lookupProvider));
         generator.addProvider(true, new ModDatapackProvider(packOutput, lookupProvider));

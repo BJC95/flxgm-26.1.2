@@ -26,6 +26,7 @@ public class ModCreativeModeTabs {
                       output.accept(ModItems.FILLED_BLOOD_VIAL.get());
                       output.accept(ModItems.HYPERDONTA_BOTTLE.get());
 
+                      output.accept(ModBlocks.SORROWSPRUCE_SAPLING.get());
                       output.accept(ModBlocks.SORROWSPRUCE_LOG.get());
                       output.accept(ModBlocks.SORROWSPRUCE_WOOD.get());
                       output.accept(ModBlocks.STRIPPED_SORROWSPRUCE_LOG.get());
@@ -37,6 +38,7 @@ public class ModCreativeModeTabs {
                       output.accept(ModBlocks.SORROWSPRUCE_BUTTON.get());
                       output.accept(ModBlocks.SORROWSPRUCE_FENCE.get());
                       output.accept(ModBlocks.SORROWSPRUCE_FENCE_GATE.get());
+                      output.accept(ModBlocks.SORROWSPRUCE_LEAVES.get());
 
                       output.accept(ModBlocks.PRI_PEDESTAL.get());
                       output.accept(ModBlocks.SEC_PEDESTAL.get());

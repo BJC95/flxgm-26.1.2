@@ -8,7 +8,7 @@ import net.minecraft.world.item.Item;
 
 public class ModTags {
     public static class Items {
-        public static final TagKey<Item> SORROWSPRUCE = createTag("sorrowspruce");
+        public static final TagKey<Item> SORROWSPRUCE_LOGS = createTag("sorrowspruce_logs");
 
         private static TagKey<Item> createTag(String name) {
             return ItemTags.create(Identifier.fromNamespaceAndPath(GnawedMajiks.MOD_ID, name));

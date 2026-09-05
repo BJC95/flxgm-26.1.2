@@ -9,8 +9,10 @@ import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.client.data.models.model.TexturedModel;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 
 import static net.minecraft.client.data.models.BlockModelGenerators.createSimpleBlock;
 import static net.minecraft.client.data.models.BlockModelGenerators.plainVariant;
@@ -43,6 +45,10 @@ public class ModModelProvider extends ModelProvider {
                 .button(ModBlocks.SORROWSPRUCE_BUTTON.get())
                 .fence(ModBlocks.SORROWSPRUCE_FENCE.get())
                 .fenceGate(ModBlocks.SORROWSPRUCE_FENCE_GATE.get());
+
+        blockModels.createTintedLeaves(ModBlocks.SORROWSPRUCE_LEAVES.get(), TexturedModel.LEAVES, 12012255);
+        blockModels.createPlantWithDefaultItem(ModBlocks.SORROWSPRUCE_SAPLING.get(),
+                ModBlocks.POTTED_SORROWSPRUCE_SAPLING.get(), BlockModelGenerators.PlantType.TINTED);
 
         createPriPedestal(ModBlocks.PRI_PEDESTAL.get(), blockModels);
         createPedestal(ModBlocks.SEC_PEDESTAL.get(), blockModels);

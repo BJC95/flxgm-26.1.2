@@ -20,9 +20,12 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider registries) {
-        tag(ModTags.Items.SORROWSPRUCE)
-                .add(Item.byBlock(ModBlocks.SORROWSPRUCE_LOG.get()));
-
-
+        tag(ModTags.Items.SORROWSPRUCE_LOGS)
+                .add(Item.byBlock(ModBlocks.SORROWSPRUCE_LOG.get()))
+                .add(Item.byBlock(ModBlocks.STRIPPED_SORROWSPRUCE_LOG.get()));
+        tag(ItemTags.WOODEN_TOOL_MATERIALS)
+                .add(Item.byBlock(ModBlocks.SORROWSPRUCE_PLANKS.get()));
+        tag(ItemTags.PLANKS)
+                .add(Item.byBlock(ModBlocks.SORROWSPRUCE_PLANKS.get()));
     }
 }

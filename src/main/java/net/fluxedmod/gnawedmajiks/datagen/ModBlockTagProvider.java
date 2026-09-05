@@ -5,6 +5,7 @@ import net.fluxedmod.gnawedmajiks.block.ModBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 
 import java.util.concurrent.CompletableFuture;
@@ -30,11 +31,19 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.SORROWSPRUCE_FENCE_GATE.get())
                 .add(ModBlocks.SORROWSPRUCE_PLANKS.get());
 
+        tag(BlockTags.LOGS_THAT_BURN)
+                .add(ModBlocks.SORROWSPRUCE_LOG.get())
+                .add(ModBlocks.SORROWSPRUCE_WOOD.get())
+                .add(ModBlocks.STRIPPED_SORROWSPRUCE_LOG.get())
+                .add(ModBlocks.STRIPPED_SORROWSPRUCE_WOOD.get());
+
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.PRI_PEDESTAL.get())
                 .add(ModBlocks.SEC_PEDESTAL.get())
                 .add(ModBlocks.TRI_PEDESTAL.get());
 
+        tag(BlockTags.PLANKS)
+                .add(ModBlocks.SORROWSPRUCE_PLANKS.get());
         tag(BlockTags.STAIRS)
                 .add(ModBlocks.SORROWSPRUCE_STAIRS.get());
         tag(BlockTags.SLABS)
@@ -49,9 +58,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.SORROWSPRUCE_FENCE.get());
         tag(BlockTags.FENCE_GATES)
                 .add(ModBlocks.SORROWSPRUCE_FENCE_GATE.get());
-
         tag(BlockTags.LOGS)
-                .add(ModBlocks.SORROWSPRUCE_LOG.get());
-
+                .add(ModBlocks.SORROWSPRUCE_LOG.get())
+                .add(ModBlocks.SORROWSPRUCE_WOOD.get())
+                .add(ModBlocks.STRIPPED_SORROWSPRUCE_LOG.get())
+                .add(ModBlocks.STRIPPED_SORROWSPRUCE_WOOD.get());
+        tag(BlockTags.SAPLINGS)
+                .add(ModBlocks.SORROWSPRUCE_SAPLING.get());
     }
 }

@@ -1,15 +1,23 @@
 package net.fluxedmod.gnawedmajiks.block;
 
 import net.fluxedmod.gnawedmajiks.GnawedMajiks;
+import net.fluxedmod.gnawedmajiks.block.custom.ModFlammableRotatedPillarBlock;
 import net.fluxedmod.gnawedmajiks.block.custom.PriPedestalBlock;
 import net.fluxedmod.gnawedmajiks.block.custom.SecPedestalBlock;
 import net.fluxedmod.gnawedmajiks.block.custom.TriPedestalBlock;
 import net.fluxedmod.gnawedmajiks.item.ModItems;
+import net.fluxedmod.gnawedmajiks.worldgen.tree.ModTreeGrowers;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -24,39 +32,46 @@ public class ModBlocks {
             properties -> new Block(properties
                     .strength(2f)
                     .explosionResistance(3f)
+                    .ignitedByLava()
                     .sound(SoundType.WOOD)));
 
     public static final DeferredBlock<Block> SORROWSPRUCE_LOG = registerBlock("sorrowspruce_log",
-            properties -> new RotatedPillarBlock(properties
+            properties -> new ModFlammableRotatedPillarBlock(properties
                     .strength(2f)
                     .explosionResistance(3f)
+                    .ignitedByLava()
                     .sound(SoundType.WOOD)));
     public static final DeferredBlock<Block> SORROWSPRUCE_WOOD = registerBlock("sorrowspruce_wood",
-            properties -> new RotatedPillarBlock(properties
+            properties -> new ModFlammableRotatedPillarBlock(properties
                     .strength(2f)
                     .explosionResistance(3f)
+                    .ignitedByLava()
                     .sound(SoundType.WOOD)));
 
     public static final DeferredBlock<Block> STRIPPED_SORROWSPRUCE_LOG = registerBlock("stripped_sorrowspruce_log",
-            properties -> new RotatedPillarBlock(properties
+            properties -> new ModFlammableRotatedPillarBlock(properties
                     .strength(2f)
                     .explosionResistance(3f)
+                    .ignitedByLava()
                     .sound(SoundType.WOOD)));
     public static final DeferredBlock<Block> STRIPPED_SORROWSPRUCE_WOOD = registerBlock("stripped_sorrowspruce_wood",
-            properties -> new RotatedPillarBlock(properties
+            properties -> new ModFlammableRotatedPillarBlock(properties
                     .strength(2f)
                     .explosionResistance(3f)
+                    .ignitedByLava()
                     .sound(SoundType.WOOD)));
 
     public static final DeferredBlock<Block> SORROWSPRUCE_STAIRS = registerBlock("sorrowspruce_stairs",
             properties -> new StairBlock(ModBlocks.SORROWSPRUCE_PLANKS.get().defaultBlockState(), properties
                     .strength(2f)
                     .explosionResistance(3f)
+                    .ignitedByLava()
                     .sound(SoundType.WOOD)));
     public static final DeferredBlock<Block> SORROWSPRUCE_SLAB = registerBlock("sorrowspruce_slab",
             properties -> new SlabBlock(properties
                     .strength(2f)
                     .explosionResistance(3f)
+                    .ignitedByLava()
                     .sound(SoundType.WOOD)));
     public static final DeferredBlock<Block> SORROWSPRUCE_PRESSURE_PLATE = registerBlock("sorrowspruce_pressure_plate",
             properties -> new PressurePlateBlock(BlockSetType.SPRUCE, properties
@@ -65,6 +80,7 @@ public class ModBlocks {
                     .forceSolidOn()
                     .noCollision()
                     .pushReaction(PushReaction.DESTROY)
+                    .ignitedByLava()
                     .sound(SoundType.WOOD)));
     public static final DeferredBlock<Block> SORROWSPRUCE_BUTTON = registerBlock("sorrowspruce_button",
             properties -> new ButtonBlock(BlockSetType.SPRUCE, 20, properties
@@ -72,17 +88,52 @@ public class ModBlocks {
                     .explosionResistance(3f)
                     .noCollision()
                     .pushReaction(PushReaction.DESTROY)
+                    .ignitedByLava()
                     .sound(SoundType.WOOD)));
     public static final DeferredBlock<Block> SORROWSPRUCE_FENCE = registerBlock("sorrowspruce_fence",
             properties -> new FenceBlock(properties
                     .strength(2f)
                     .explosionResistance(3f)
+                    .ignitedByLava()
                     .sound(SoundType.WOOD)));
         public static final DeferredBlock<Block> SORROWSPRUCE_FENCE_GATE = registerBlock("sorrowspruce_fence_gate",
             properties -> new FenceGateBlock(WoodType.SPRUCE, properties
                     .strength(2f)
                     .explosionResistance(3f)
+                    .ignitedByLava()
                     .sound(SoundType.WOOD)));
+    public static final DeferredBlock<Block> SORROWSPRUCE_LEAVES = registerBlock("sorrowspruce_leaves",
+            properties -> new UntintedParticleLeavesBlock(0f, ParticleTypes.DRIPPING_WATER,
+                    properties.mapColor(MapColor.TERRACOTTA_PURPLE).strength(0.2F)
+                            .randomTicks().sound(SoundType.AZALEA_LEAVES)
+                            .noOcclusion().isValidSpawn(Blocks::ocelotOrParrot)
+                            .isSuffocating((state, level, pos) -> false)
+                            .isViewBlocking((state, level, pos) -> false)
+                            .ignitedByLava().pushReaction(PushReaction.DESTROY)
+                            .isRedstoneConductor((state, level, pos) -> false)) {
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 60;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 30;
+                }
+            });
+
+
+    public static final DeferredBlock<Block> SORROWSPRUCE_SAPLING = registerBlock("sorrowspruce_sapling",
+            properties -> new SaplingBlock(ModTreeGrowers.SORROWSPRUCE, properties.mapColor(MapColor.PLANT).noCollision()
+                    .randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<Block> POTTED_SORROWSPRUCE_SAPLING = BLOCKS.registerBlock("potted_sorrowspruce_sapling",
+            properties -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, SORROWSPRUCE_SAPLING,
+                    properties.noOcclusion().instabreak().pushReaction(PushReaction.DESTROY)));
 
     // PEDESTALS
     public static final DeferredBlock<Block> PRI_PEDESTAL = registerBlock("primary_dental_pedestal",

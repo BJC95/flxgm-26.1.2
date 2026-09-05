@@ -1,5 +1,8 @@
 {
   "values": [
-    "flx_gm:sorrowspruce_log"
+    "flx_gm:sorrowspruce_log",
+    "flx_gm:sorrowspruce_wood",
+    "flx_gm:stripped_sorrowspruce_log",
+    "flx_gm:stripped_sorrowspruce_wood"
   ]
 }

@@ -35,10 +35,14 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.SORROWSPRUCE_PRESSURE_PLATE.get());
         dropSelf(ModBlocks.SORROWSPRUCE_FENCE.get());
         dropSelf(ModBlocks.SORROWSPRUCE_FENCE_GATE.get());
+        dropSelf(ModBlocks.SORROWSPRUCE_SAPLING.get());
+        add(ModBlocks.SORROWSPRUCE_SLAB.get(), this::createSlabItemTable);
+        add(ModBlocks.POTTED_SORROWSPRUCE_SAPLING.get(), createPotFlowerItemTable(ModBlocks.SORROWSPRUCE_SAPLING.get()));
+        add(ModBlocks.SORROWSPRUCE_LEAVES.get(), block -> createLeavesDrops(block,
+                ModBlocks.SORROWSPRUCE_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         dropSelf(ModBlocks.PRI_PEDESTAL.get());
         dropSelf(ModBlocks.SEC_PEDESTAL.get());
         dropSelf(ModBlocks.TRI_PEDESTAL.get());
-        add(ModBlocks.SORROWSPRUCE_SLAB.get(), this::createSlabItemTable);
     }
 
     protected LootTable.Builder createMultipleOreDrops(Block pBlock, Item item, float minDrops, float maxDrops) {

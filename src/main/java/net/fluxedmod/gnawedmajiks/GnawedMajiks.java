@@ -8,7 +8,10 @@ import net.fluxedmod.gnawedmajiks.creativetab.ModCreativeModeTabs;
 import net.fluxedmod.gnawedmajiks.effect.ModEffects;
 import net.fluxedmod.gnawedmajiks.item.ModItems;
 import net.fluxedmod.gnawedmajiks.recipe.ModRecipes;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -52,7 +55,11 @@ public class GnawedMajiks {
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.SORROWSPRUCE_SAPLING.getId(), ModBlocks.POTTED_SORROWSPRUCE_SAPLING);
 
+            // Stats.CUSTOM.get(ModStats.MANA_USED_TOTAL_STAT.get(), value -> value + " Mana");
+        });
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
