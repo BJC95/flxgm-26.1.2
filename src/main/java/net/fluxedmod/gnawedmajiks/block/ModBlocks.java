@@ -1,10 +1,7 @@
 package net.fluxedmod.gnawedmajiks.block;
 
 import net.fluxedmod.gnawedmajiks.GnawedMajiks;
-import net.fluxedmod.gnawedmajiks.block.custom.ModFlammableRotatedPillarBlock;
-import net.fluxedmod.gnawedmajiks.block.custom.PriPedestalBlock;
-import net.fluxedmod.gnawedmajiks.block.custom.SecPedestalBlock;
-import net.fluxedmod.gnawedmajiks.block.custom.TriPedestalBlock;
+import net.fluxedmod.gnawedmajiks.block.custom.*;
 import net.fluxedmod.gnawedmajiks.item.ModItems;
 import net.fluxedmod.gnawedmajiks.worldgen.tree.ModTreeGrowers;
 import net.minecraft.core.BlockPos;
@@ -103,9 +100,9 @@ public class ModBlocks {
                     .ignitedByLava()
                     .sound(SoundType.WOOD)));
     public static final DeferredBlock<Block> SORROWSPRUCE_LEAVES = registerBlock("sorrowspruce_leaves",
-            properties -> new UntintedParticleLeavesBlock(0f, ParticleTypes.DRIPPING_WATER,
+            properties -> new UntintedParticleLeavesBlock(0.6f, ParticleTypes.FALLING_OBSIDIAN_TEAR,
                     properties.mapColor(MapColor.TERRACOTTA_PURPLE).strength(0.2F)
-                            .randomTicks().sound(SoundType.AZALEA_LEAVES)
+                            .randomTicks().sound(SoundType.GRASS)
                             .noOcclusion().isValidSpawn(Blocks::ocelotOrParrot)
                             .isSuffocating((state, level, pos) -> false)
                             .isViewBlocking((state, level, pos) -> false)
@@ -129,8 +126,8 @@ public class ModBlocks {
 
 
     public static final DeferredBlock<Block> SORROWSPRUCE_SAPLING = registerBlock("sorrowspruce_sapling",
-            properties -> new SaplingBlock(ModTreeGrowers.SORROWSPRUCE, properties.mapColor(MapColor.PLANT).noCollision()
-                    .randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)));
+            properties -> new ModSaplingBlock(ModTreeGrowers.SORROWSPRUCE, properties.mapColor(MapColor.PLANT).noCollision()
+                    .randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY), () -> Blocks.BLUE_ICE));
     public static final DeferredBlock<Block> POTTED_SORROWSPRUCE_SAPLING = BLOCKS.registerBlock("potted_sorrowspruce_sapling",
             properties -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, SORROWSPRUCE_SAPLING,
                     properties.noOcclusion().instabreak().pushReaction(PushReaction.DESTROY)));
