@@ -1,8 +1,7 @@
 package net.fluxedmod.gnawedmajiks.datagen;
 
 import net.fluxedmod.gnawedmajiks.GnawedMajiks;
-import net.fluxedmod.gnawedmajiks.dimension.ModDimensions;
-import net.fluxedmod.gnawedmajiks.dimension.ModNoiseGeneratorSettings;
+import net.fluxedmod.gnawedmajiks.worldgen.dimension.ModDimensions;
 import net.fluxedmod.gnawedmajiks.worldgen.ModBiomeModifiers;
 import net.fluxedmod.gnawedmajiks.worldgen.ModConfiguredFeatures;
 import net.fluxedmod.gnawedmajiks.worldgen.ModPlacedFeatures;
@@ -21,7 +20,7 @@ public class ModDatapackProvider extends DatapackBuiltinEntriesProvider {
             .add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap)
             .add(Registries.PLACED_FEATURE, ModPlacedFeatures::bootstrap)
             .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ModBiomeModifiers::bootstrap)
-//            .add(Registries.NOISE_SETTINGS, ModNoiseGeneratorSettings::bootstrap)
+            .add(Registries.NOISE_SETTINGS, ModDimensions::bootstrapSettings)
             .add(Registries.DIMENSION_TYPE, ModDimensions::bootstrapType)
             .add(Registries.LEVEL_STEM, ModDimensions::bootstrapStem);
 
