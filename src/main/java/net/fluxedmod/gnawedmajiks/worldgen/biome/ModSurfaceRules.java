@@ -7,7 +7,7 @@ import net.minecraft.world.level.levelgen.VerticalAnchor;
 
 public class ModSurfaceRules {
 
-    private static final SurfaceRules.RuleSource OBSIDIAN = makeStateRule(Blocks.OBSIDIAN);
+    private static final SurfaceRules.RuleSource BONE = makeStateRule(Blocks.BONE_BLOCK);
     private static final SurfaceRules.RuleSource END_STONE = makeStateRule(Blocks.END_STONE);
 
     private static final SurfaceRules.RuleSource GLOWSTONE = makeStateRule(Blocks.GLOWSTONE);
@@ -27,12 +27,12 @@ public class ModSurfaceRules {
                         SurfaceRules.isBiome(ModBiomes.KAUPEN_VALLEY),
                         SurfaceRules.sequence(
                                 // Obsidian on the undersides of ceilings
-                                SurfaceRules.ifTrue(SurfaceRules.UNDER_CEILING, OBSIDIAN),
+                                SurfaceRules.ifTrue(SurfaceRules.UNDER_CEILING, BONE),
                                 // Obsidian on the undersides of floors (though less common in Nether caves)
-                                SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, GLOWSTONE),
-                                SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR, OBSIDIAN),
+                                SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, NETHERRACK),
+                                SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR, BONE),
                                 // Default to glowstone if not under a ceiling or floor
-                                GLOWSTONE))
+                                NETHERRACK))
         );
     }
 

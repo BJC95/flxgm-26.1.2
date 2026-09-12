@@ -17,7 +17,7 @@ public class ModBiomes {
         var carver = context.lookup(Registries.CONFIGURED_CARVER);
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
 
-        register(context, KAUPEN_VALLEY, ModCavityBiome.glowstonePlains(placedFeatures, carver));
+        register(context, KAUPEN_VALLEY, ModCavityBiomes.glowstonePlains(placedFeatures, carver));
     }
 
     private static void register(BootstrapContext<Biome> context, ResourceKey<Biome> key, Biome biome) {

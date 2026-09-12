@@ -24,6 +24,7 @@ public class ModDatapackProvider extends DatapackBuiltinEntriesProvider {
             .add(Registries.DIMENSION_TYPE, ModDimensions::bootstrapType)
             .add(Registries.LEVEL_STEM, ModDimensions::bootstrapStem)
             .add(Registries.NOISE_SETTINGS, ModDimensions::bootstrapNoise)
+            .add(Registries.DENSITY_FUNCTION, ModDimensions::bootstrapDensityFunction)
 
             .add(Registries.BIOME, ModBiomes::bootstrap);
 

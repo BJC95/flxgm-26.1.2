@@ -3,11 +3,10 @@ package net.fluxedmod.gnawedmajiks.worldgen.dimension;
 import com.mojang.datafixers.util.Pair;
 import net.fluxedmod.gnawedmajiks.GnawedMajiks;
 import net.fluxedmod.gnawedmajiks.worldgen.biome.ModBiomes;
-import net.fluxedmod.gnawedmajiks.worldgen.biome.ModCavityBiome;
 import net.fluxedmod.gnawedmajiks.worldgen.biome.ModSurfaceRules;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.data.worldgen.SurfaceRuleData;
 import net.minecraft.data.worldgen.biome.OverworldBiomes;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
@@ -22,16 +21,13 @@ import net.minecraft.world.level.CardinalLighting;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.Climate;
-import net.minecraft.world.level.biome.FixedBiomeSource;
 import net.minecraft.world.level.biome.MultiNoiseBiomeSource;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.dimension.LevelStem;
-import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
-import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
-import net.minecraft.world.level.levelgen.NoiseRouterData;
-import net.minecraft.world.level.levelgen.NoiseSettings;
-import net.neoforged.fml.common.Mod;
+import net.minecraft.world.level.levelgen.*;
+import net.minecraft.world.level.levelgen.synth.BlendedNoise;
+import terrablender.api.ParameterUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -45,6 +41,8 @@ public class ModDimensions {
             Identifier.fromNamespaceAndPath(GnawedMajiks.MOD_ID, "cavity_type"));
     public static final ResourceKey<NoiseGeneratorSettings> CAVITY_NOISE_KEY = ResourceKey.create(Registries.NOISE_SETTINGS,
             Identifier.fromNamespaceAndPath(GnawedMajiks.MOD_ID, "cavity"));
+    private static final ResourceKey<DensityFunction> BASE_3D_NOISE_CAVITY = ResourceKey.create(Registries.DENSITY_FUNCTION,
+            Identifier.fromNamespaceAndPath(GnawedMajiks.MOD_ID, "cavity/base_3d_noise"));
 
 
     public static void bootstrapType(BootstrapContext<DimensionType> context) {
@@ -70,7 +68,7 @@ public class ModDimensions {
                         .set(EnvironmentAttributes.FOG_COLOR, -6168523)
                         .set(EnvironmentAttributes.SKY_COLOR, OverworldBiomes.calculateSkyColor(2.5f))
                         .set(EnvironmentAttributes.AMBIENT_LIGHT_COLOR, -4212331)
-                        .set(EnvironmentAttributes.CLOUD_COLOR, ARGB.color(155, 200, 31, 25))
+                        .set(EnvironmentAttributes.CLOUD_COLOR, ARGB.color(0, 0, 0, 0))
                         .build(),
                 timelines.getOrThrow(TimelineTags.IN_OVERWORLD),
                 Optional.of(clocks.getOrThrow(WorldClocks.OVERWORLD))));
@@ -88,22 +86,39 @@ public class ModDimensions {
                                 Pair.of(Climate.parameters(
                                         0f, 0f, 0f, 0f, 0f, 0f, 0f),
                                         biomes.getOrThrow(ModBiomes.KAUPEN_VALLEY)),
-                                Pair.of(Climate.parameters(0f, 0f, 0f, 0f, 0f, 0f, 0f), biomes.getOrThrow(ModBiomes.KAUPEN_VALLEY)),
                                 Pair.of(Climate.parameters(0.1f, 0.1f, 0f, 0f, 0f, 0f, 0f), biomes.getOrThrow(Biomes.CHERRY_GROVE)),
                                 Pair.of(Climate.parameters(0.1f, 0.25f, 0f, 0f, 0f, 0f, 0f), biomes.getOrThrow(Biomes.BEACH)),
                                 Pair.of(Climate.parameters(0.1f, 0.3f, -0.05f, 0f, 0f, 0f, 0f), biomes.getOrThrow(Biomes.DEEP_LUKEWARM_OCEAN))
                         ))),
-                noiseGenSettings.getOrThrow(NoiseGeneratorSettings.NETHER));
+                noiseGenSettings.getOrThrow(CAVITY_NOISE_KEY));
 
         context.register(CAVITY_KEY, new LevelStem(dimensionTypes.getOrThrow(ModDimensions.CAVITY_TYPE_KEY), multiBiomeGenerator));
     }
 
     public static void bootstrapNoise(BootstrapContext<NoiseGeneratorSettings> context) {
+        DensityFunction slide = slideNetherLike(context.lookup(Registries.DENSITY_FUNCTION), 0, 256);
+        DensityFunction fullNoise = postProcess(slide);
         NoiseGeneratorSettings cavity = new NoiseGeneratorSettings(
-                NoiseSettings.create(0, 128, 1, 2),
-                Blocks.NETHERRACK.defaultBlockState(),
+                NoiseSettings.create(0, 256, 1, 2),
+                Blocks.BONE_BLOCK.defaultBlockState(),
                 Blocks.LAVA.defaultBlockState(),
-                NoiseRouterData.none(),
+                new NoiseRouter(
+                        DensityFunctions.zero(), //Barrier
+                        DensityFunctions.zero(), //Fluid Floodedness
+                        DensityFunctions.zero(), //Fluid Spread
+                        DensityFunctions.zero(), //Lava Noise
+                        DensityFunctions.zero(), //Temp
+                        DensityFunctions.zero(), //Vegetation
+                        DensityFunctions.zero(), //Continents
+                        DensityFunctions.zero(), //Erosion
+                        DensityFunctions.zero(), //Depth
+                        DensityFunctions.zero(), //Ridges
+                        DensityFunctions.zero(), //Preliminary Surface Level
+                        fullNoise, // Final Density
+                        DensityFunctions.zero(), //Vein Toggle
+                        DensityFunctions.zero(), //Vein Ridged
+                        DensityFunctions.zero()  //Vein Gap
+                ),
                 ModSurfaceRules.makeCavityRules(),
                 List.of(),
                 32,
@@ -114,5 +129,28 @@ public class ModDimensions {
         );
 
         context.register(CAVITY_NOISE_KEY, cavity);
+    }
+    public static void bootstrapDensityFunction(BootstrapContext<DensityFunction> context) {
+        context.register(BASE_3D_NOISE_CAVITY, BlendedNoise.createUnseeded(
+                0.25, 0.375, 80.0, 60.0, 8.0));
+    }
+
+    private static DensityFunction postProcess(DensityFunction slide) {
+        DensityFunction blended = DensityFunctions.blendDensity(slide);
+        return DensityFunctions.mul(DensityFunctions.interpolated(blended), DensityFunctions.constant(0.64)).squeeze();
+    }
+    private static DensityFunction getFunction(HolderGetter<DensityFunction> functions, ResourceKey<DensityFunction> name) {
+        return new DensityFunctions.HolderHolder(functions.getOrThrow(name));
+    }
+    private static DensityFunction slide(
+            DensityFunction caves, int minY, int height, int topStartY, int topEndY, double topTarget, int bottomStartY, int bottomEndY, double bottomTarget
+    ) {
+        DensityFunction topFactor = DensityFunctions.yClampedGradient(minY + height - topStartY, minY + height - topEndY, 1.0, 0.0);
+        DensityFunction noiseValue = DensityFunctions.lerp(topFactor, topTarget, caves);
+        DensityFunction bottomFactor = DensityFunctions.yClampedGradient(minY + bottomStartY, minY + bottomEndY, 0.0, 1.0);
+        return DensityFunctions.lerp(bottomFactor, bottomTarget, noiseValue);
+    }
+    private static DensityFunction slideNetherLike(HolderGetter<DensityFunction> functions, int minY, int height) {
+        return slide(getFunction(functions, BASE_3D_NOISE_CAVITY), minY, height, 24, 0, 0.9375, -8, 24, 2.5);
     }
 }
