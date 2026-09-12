@@ -86,9 +86,12 @@ public class ModDimensions {
                                 Pair.of(Climate.parameters(
                                         0f, 0f, 0f, 0f, 0f, 0f, 0f),
                                         biomes.getOrThrow(ModBiomes.KAUPEN_VALLEY)),
-                                Pair.of(Climate.parameters(0.1f, 0.1f, 0f, 0f, 0f, 0f, 0f), biomes.getOrThrow(Biomes.CHERRY_GROVE)),
-                                Pair.of(Climate.parameters(0.1f, 0.25f, 0f, 0f, 0f, 0f, 0f), biomes.getOrThrow(Biomes.BEACH)),
-                                Pair.of(Climate.parameters(0.1f, 0.3f, -0.05f, 0f, 0f, 0f, 0f), biomes.getOrThrow(Biomes.DEEP_LUKEWARM_OCEAN))
+                                Pair.of(Climate.parameters(0f, 0.1f, 0f, 0f, 0f, 0f, 0f),
+                                        biomes.getOrThrow(Biomes.CHERRY_GROVE)),
+                                Pair.of(Climate.parameters(0.1f, 0f, 0f, 0f, 0f, 0f, 0f),
+                                        biomes.getOrThrow(Biomes.BEACH)),
+                                Pair.of(Climate.parameters(0.1f, 0.1f, 0f, 0f, 0f, 0f, 0f),
+                                        biomes.getOrThrow(Biomes.DEEP_LUKEWARM_OCEAN))
                         ))),
                 noiseGenSettings.getOrThrow(CAVITY_NOISE_KEY));
 
@@ -98,6 +101,14 @@ public class ModDimensions {
     public static void bootstrapNoise(BootstrapContext<NoiseGeneratorSettings> context) {
         DensityFunction slide = slideNetherLike(context.lookup(Registries.DENSITY_FUNCTION), 0, 256);
         DensityFunction fullNoise = postProcess(slide);
+        DensityFunction temperature = DensityFunctions.shiftedNoise2d(
+                DensityFunctions.zero(), DensityFunctions.zero(), 0.25,
+                context.lookup(Registries.NOISE).getOrThrow(Noises.TEMPERATURE_NETHER)
+        );
+        DensityFunction vegetation = DensityFunctions.shiftedNoise2d(
+                DensityFunctions.zero(), DensityFunctions.zero(), 0.25,
+                context.lookup(Registries.NOISE).getOrThrow(Noises.VEGETATION_NETHER)
+        );
         NoiseGeneratorSettings cavity = new NoiseGeneratorSettings(
                 NoiseSettings.create(0, 256, 1, 2),
                 Blocks.BONE_BLOCK.defaultBlockState(),
@@ -107,8 +118,8 @@ public class ModDimensions {
                         DensityFunctions.zero(), //Fluid Floodedness
                         DensityFunctions.zero(), //Fluid Spread
                         DensityFunctions.zero(), //Lava Noise
-                        DensityFunctions.zero(), //Temp
-                        DensityFunctions.zero(), //Vegetation
+                        temperature, //Temp
+                        vegetation, //Vegetation
                         DensityFunctions.zero(), //Continents
                         DensityFunctions.zero(), //Erosion
                         DensityFunctions.zero(), //Depth
