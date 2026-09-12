@@ -8,7 +8,8 @@ import net.fluxedmod.gnawedmajiks.creativetab.ModCreativeModeTabs;
 import net.fluxedmod.gnawedmajiks.effect.ModEffects;
 import net.fluxedmod.gnawedmajiks.item.ModItems;
 import net.fluxedmod.gnawedmajiks.recipe.ModRecipes;
-import net.minecraft.stats.Stats;
+import net.fluxedmod.gnawedmajiks.worldgen.biome.ModBiomes;
+import net.fluxedmod.gnawedmajiks.worldgen.biome.ModSurfaceRules;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -22,6 +23,7 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.slf4j.Logger;
+import terrablender.api.SurfaceRuleManager;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(GnawedMajiks.MOD_ID)
@@ -59,6 +61,11 @@ public class GnawedMajiks {
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.SORROWSPRUCE_SAPLING.getId(), ModBlocks.POTTED_SORROWSPRUCE_SAPLING);
 
             // Stats.CUSTOM.get(ModStats.MANA_USED_TOTAL_STAT.get(), value -> value + " Mana");
+
+            ModBiomes.registerBiomes();
+
+            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.NETHER,
+                    MOD_ID, ModSurfaceRules.makeCavityRules());
         });
     }
 
