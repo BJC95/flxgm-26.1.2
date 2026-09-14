@@ -33,6 +33,12 @@ public class ModModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ModItems.HYPERDONTA_BOTTLE.get(), ModelTemplates.FLAT_ITEM);
 
         //BLOCKS
+        blockModels.createTrivialCube(ModBlocks.TOOTHSLATE.get());
+        blockModels.createTrivialCube(ModBlocks.SANGUINE_TOOTHSLATE.get());
+        blockModels.createTrivialCube(ModBlocks.CHARRED_TOOTHSLATE.get());
+        blockModels.createTrivialCube(ModBlocks.NEUROSAND.get());
+        createPriPedestal(ModBlocks.NEUROSANDSTONE.get(), blockModels);
+
         blockModels.woodProvider(ModBlocks.SORROWSPRUCE_LOG.get())
                 .log(ModBlocks.SORROWSPRUCE_LOG.get()).wood(ModBlocks.SORROWSPRUCE_WOOD.get());
         blockModels.woodProvider(ModBlocks.STRIPPED_SORROWSPRUCE_LOG.get())
@@ -54,7 +60,6 @@ public class ModModelProvider extends ModelProvider {
         createPedestal(ModBlocks.SEC_PEDESTAL.get(), blockModels);
         createPedestal(ModBlocks.TRI_PEDESTAL.get(), blockModels);
     }
-
 
     public static void createPriPedestal(Block block, BlockModelGenerators blockModels) {
         TextureMapping mapping = new TextureMapping()

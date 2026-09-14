@@ -1,5 +1,6 @@
 package net.fluxedmod.gnawedmajiks.worldgen.biome;
 
+import net.fluxedmod.gnawedmajiks.block.ModBlocks;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.SurfaceRules;
@@ -7,11 +8,14 @@ import net.minecraft.world.level.levelgen.VerticalAnchor;
 
 public class ModSurfaceRules {
 
-    private static final SurfaceRules.RuleSource BONE = makeStateRule(Blocks.BONE_BLOCK);
-    private static final SurfaceRules.RuleSource END_STONE = makeStateRule(Blocks.END_STONE);
+    private static final SurfaceRules.RuleSource TOOTHSLATE = makeStateRule(ModBlocks.TOOTHSLATE.get());
+    private static final SurfaceRules.RuleSource SANGUINE = makeStateRule(ModBlocks.SANGUINE_TOOTHSLATE.get());
+    private static final SurfaceRules.RuleSource AIR = makeStateRule(Blocks.AIR);
 
-    private static final SurfaceRules.RuleSource GLOWSTONE = makeStateRule(Blocks.GLOWSTONE);
-    private static final SurfaceRules.RuleSource NETHERRACK = makeStateRule(Blocks.NETHERRACK);
+    private static final SurfaceRules.RuleSource NEUROSAND = makeStateRule(ModBlocks.NEUROSAND.get());
+    private static final SurfaceRules.RuleSource NEUROSANDSTONE = makeStateRule(ModBlocks.NEUROSANDSTONE.get());
+
+
     private static final SurfaceRules.RuleSource BEDROCK = makeStateRule(Blocks.BEDROCK);
 
 
@@ -21,18 +25,45 @@ public class ModSurfaceRules {
                         VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)), BEDROCK),
                 SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.verticalGradient("bedrock_roof",
                         VerticalAnchor.belowTop(5), VerticalAnchor.top())), BEDROCK),
+                SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.aboveBottom(30),2)),SANGUINE),
 
                 // Then apply biome-specific rules
                 SurfaceRules.ifTrue(
-                        SurfaceRules.isBiome(ModBiomes.KAUPEN_VALLEY),
+                        SurfaceRules.isBiome(ModBiomes.DENTAL_PLAINS),
                         SurfaceRules.sequence(
                                 // Obsidian on the undersides of ceilings
-                                SurfaceRules.ifTrue(SurfaceRules.UNDER_CEILING, BONE),
+                                SurfaceRules.ifTrue(SurfaceRules.UNDER_CEILING, TOOTHSLATE),
                                 // Obsidian on the undersides of floors (though less common in Nether caves)
-                                SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, NETHERRACK),
-                                SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR, BONE),
+                                SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, TOOTHSLATE),
+                                SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR, TOOTHSLATE),
                                 // Default to glowstone if not under a ceiling or floor
-                                NETHERRACK))
+                                TOOTHSLATE)),
+                SurfaceRules.ifTrue(
+                        SurfaceRules.isBiome(ModBiomes.NEURESA),
+                        SurfaceRules.sequence(
+                                SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, NEUROSAND),
+                                NEUROSANDSTONE)),
+                SurfaceRules.ifTrue(
+                        SurfaceRules.isBiome(ModBiomes.OPTIC_TUNDRA),
+                        SurfaceRules.sequence(
+                                // Obsidian on the undersides of ceilings
+                                SurfaceRules.ifTrue(SurfaceRules.UNDER_CEILING, TOOTHSLATE),
+                                // Obsidian on the undersides of floors (though less common in Nether caves)
+                                SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, TOOTHSLATE),
+                                SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR, TOOTHSLATE),
+                                // Default to glowstone if not under a ceiling or floor
+                                TOOTHSLATE)),
+                SurfaceRules.ifTrue(
+                        SurfaceRules.isBiome(ModBiomes.GASTRIC_SPIRE),
+                        SurfaceRules.sequence(
+                                // Obsidian on the undersides of ceilings
+                                SurfaceRules.ifTrue(SurfaceRules.UNDER_CEILING, TOOTHSLATE),
+                                // Obsidian on the undersides of floors (though less common in Nether caves)
+                                SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, TOOTHSLATE),
+                                SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR, TOOTHSLATE),
+                                // Default to glowstone if not under a ceiling or floor
+                                TOOTHSLATE))
+
         );
     }
 

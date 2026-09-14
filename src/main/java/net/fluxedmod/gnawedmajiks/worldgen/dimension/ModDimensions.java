@@ -27,7 +27,6 @@ import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.synth.BlendedNoise;
-import terrablender.api.ParameterUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -85,13 +84,16 @@ public class ModDimensions {
                         new Climate.ParameterList<>(List.of(
                                 Pair.of(Climate.parameters(
                                         0f, 0f, 0f, 0f, 0f, 0f, 0f),
-                                        biomes.getOrThrow(ModBiomes.KAUPEN_VALLEY)),
-                                Pair.of(Climate.parameters(0f, 0.1f, 0f, 0f, 0f, 0f, 0f),
-                                        biomes.getOrThrow(Biomes.CHERRY_GROVE)),
-                                Pair.of(Climate.parameters(0.1f, 0f, 0f, 0f, 0f, 0f, 0f),
-                                        biomes.getOrThrow(Biomes.BEACH)),
-                                Pair.of(Climate.parameters(0.1f, 0.1f, 0f, 0f, 0f, 0f, 0f),
-                                        biomes.getOrThrow(Biomes.DEEP_LUKEWARM_OCEAN))
+                                        biomes.getOrThrow(ModBiomes.DENTAL_PLAINS)),
+                                Pair.of(Climate.parameters(
+                                        0.3f, -0.2f, 0f, 0f, 0f, 0f, 0f),
+                                        biomes.getOrThrow(ModBiomes.NEURESA)),
+                                Pair.of(Climate.parameters(
+                                        -0.3f, 0.2f, 0f, 0f, 0f, 0f, 0f),
+                                        biomes.getOrThrow(ModBiomes.OPTIC_TUNDRA)),
+                                Pair.of(Climate.parameters(
+                                        0.2f, 0.3f, 0f, 0f, 0f, 0f, 0f),
+                                        biomes.getOrThrow(ModBiomes.GASTRIC_SPIRE))
                         ))),
                 noiseGenSettings.getOrThrow(CAVITY_NOISE_KEY));
 
@@ -109,10 +111,14 @@ public class ModDimensions {
                 DensityFunctions.zero(), DensityFunctions.zero(), 0.25,
                 context.lookup(Registries.NOISE).getOrThrow(Noises.VEGETATION_NETHER)
         );
+        DensityFunction continent = DensityFunctions.shiftedNoise2d(
+                DensityFunctions.zero(), DensityFunctions.zero(), 0.25,
+                context.lookup(Registries.NOISE).getOrThrow(Noises.CONTINENTALNESS_LARGE)
+        );
         NoiseGeneratorSettings cavity = new NoiseGeneratorSettings(
                 NoiseSettings.create(0, 256, 1, 2),
                 Blocks.BONE_BLOCK.defaultBlockState(),
-                Blocks.LAVA.defaultBlockState(),
+                Blocks.WATER.defaultBlockState(),
                 new NoiseRouter(
                         DensityFunctions.zero(), //Barrier
                         DensityFunctions.zero(), //Fluid Floodedness
@@ -120,7 +126,7 @@ public class ModDimensions {
                         DensityFunctions.zero(), //Lava Noise
                         temperature, //Temp
                         vegetation, //Vegetation
-                        DensityFunctions.zero(), //Continents
+                        continent, //Continents
                         DensityFunctions.zero(), //Erosion
                         DensityFunctions.zero(), //Depth
                         DensityFunctions.zero(), //Ridges

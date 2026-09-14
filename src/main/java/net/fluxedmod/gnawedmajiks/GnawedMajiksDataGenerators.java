@@ -29,5 +29,6 @@ public class GnawedMajiksDataGenerators {
         generator.addProvider(true, new ModRecipeProvider.Runner(packOutput, lookupProvider));
         generator.addProvider(true, new ModDataMapProvider(packOutput, lookupProvider));
         generator.addProvider(true, new ModDatapackProvider(packOutput, lookupProvider));
+        generator.addProvider(true, new ModSoundsProvider(packOutput));
     }
 }

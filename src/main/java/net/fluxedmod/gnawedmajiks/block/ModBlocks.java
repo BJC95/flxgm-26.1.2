@@ -132,6 +132,33 @@ public class ModBlocks {
             properties -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, SORROWSPRUCE_SAPLING,
                     properties.noOcclusion().instabreak().pushReaction(PushReaction.DESTROY)));
 
+    // CAVITY
+    public static final DeferredBlock<Block> TOOTHSLATE = registerBlock("toothslate",
+            properties -> new Block(properties
+                    .strength(1.5f)
+                    .explosionResistance(6f)
+                    .sound(SoundType.BONE_BLOCK)));
+    public static final DeferredBlock<Block> SANGUINE_TOOTHSLATE = registerBlock("sanguine_toothslate",
+            properties -> new Block(properties
+                    .strength(1.5f)
+                    .explosionResistance(6f)
+                    .sound(SoundType.DEEPSLATE)));
+    public static final DeferredBlock<Block> NEUROSAND = registerBlock("neurosand",
+            properties -> new Block(properties
+                    .strength(0.5f)
+                    .explosionResistance(0.5f)
+                    .sound(SoundType.SAND)));
+    public static final DeferredBlock<Block> NEUROSANDSTONE = registerBlock("neurosandstone",
+            properties -> new Block(properties
+                    .strength(0.8f)
+                    .explosionResistance(0.8f)
+                    .sound(SoundType.DRIPSTONE_BLOCK)));
+    public static final DeferredBlock<Block> CHARRED_TOOTHSLATE = registerBlock("charred_toothslate",
+            properties -> new Block(properties
+                    .strength(1.5f)
+                    .explosionResistance(6f)
+                    .sound(SoundType.BASALT)));
+
     // PEDESTALS
     public static final DeferredBlock<Block> PRI_PEDESTAL = registerBlock("primary_dental_pedestal",
             properties -> new PriPedestalBlock(properties

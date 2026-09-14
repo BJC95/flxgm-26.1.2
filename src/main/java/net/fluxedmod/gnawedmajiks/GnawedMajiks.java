@@ -8,6 +8,7 @@ import net.fluxedmod.gnawedmajiks.creativetab.ModCreativeModeTabs;
 import net.fluxedmod.gnawedmajiks.effect.ModEffects;
 import net.fluxedmod.gnawedmajiks.item.ModItems;
 import net.fluxedmod.gnawedmajiks.recipe.ModRecipes;
+import net.fluxedmod.gnawedmajiks.sound.ModSounds;
 import net.fluxedmod.gnawedmajiks.worldgen.biome.ModBiomes;
 import net.fluxedmod.gnawedmajiks.worldgen.biome.ModSurfaceRules;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -47,6 +48,8 @@ public class GnawedMajiks {
 
         ModRecipes.register(modEventBus);
 
+        ModSounds.register(modEventBus);
+
         NeoForge.EVENT_BUS.register(this);
 
         // Register the item to a creative tab
@@ -63,9 +66,6 @@ public class GnawedMajiks {
             // Stats.CUSTOM.get(ModStats.MANA_USED_TOTAL_STAT.get(), value -> value + " Mana");
 
             ModBiomes.registerBiomes();
-
-            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.NETHER,
-                    MOD_ID, ModSurfaceRules.makeCavityRules());
         });
     }
 

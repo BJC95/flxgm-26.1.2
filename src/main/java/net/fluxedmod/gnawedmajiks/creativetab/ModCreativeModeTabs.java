@@ -26,6 +26,12 @@ public class ModCreativeModeTabs {
                       output.accept(ModItems.FILLED_BLOOD_VIAL.get());
                       output.accept(ModItems.HYPERDONTA_BOTTLE.get());
 
+                      output.accept(ModBlocks.TOOTHSLATE.get());
+                      output.accept(ModBlocks.SANGUINE_TOOTHSLATE.get());
+                      output.accept(ModBlocks.NEUROSAND.get());
+                      output.accept(ModBlocks.NEUROSANDSTONE.get());
+                      output.accept(ModBlocks.CHARRED_TOOTHSLATE.get());
+
                       output.accept(ModBlocks.SORROWSPRUCE_SAPLING.get());
                       output.accept(ModBlocks.SORROWSPRUCE_LOG.get());
                       output.accept(ModBlocks.SORROWSPRUCE_WOOD.get());

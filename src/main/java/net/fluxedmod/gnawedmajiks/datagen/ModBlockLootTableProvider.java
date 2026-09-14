@@ -25,6 +25,12 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
+        dropSelf(ModBlocks.TOOTHSLATE.get());
+        dropSelf(ModBlocks.SANGUINE_TOOTHSLATE.get());
+        dropSelf(ModBlocks.CHARRED_TOOTHSLATE.get());
+        dropSelf(ModBlocks.NEUROSAND.get());
+        dropSelf(ModBlocks.NEUROSANDSTONE.get());
+
         dropSelf(ModBlocks.SORROWSPRUCE_LOG.get());
         dropSelf(ModBlocks.SORROWSPRUCE_PLANKS.get());
         dropSelf(ModBlocks.SORROWSPRUCE_WOOD.get());

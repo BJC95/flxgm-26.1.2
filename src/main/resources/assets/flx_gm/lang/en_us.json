@@ -6,6 +6,11 @@
 
   "item.flx_gm.enamel_controller": "Creative Enamel Controller",
 
+  "block.flx_gm.toothslate": "Toothslate",
+  "block.flx_gm.sanguine_toothslate": "Sanguine Toothslate",
+  "block.flx_gm.neurosand": "Neurosand",
+  "block.flx_gm.neurosandstone": "Neurosandstone",
+
   "block.flx_gm.sorrowspruce_log": "Sorrowspruce Log",
   "block.flx_gm.sorrowspruce_planks": "Sorrowspruce Planks",
   "block.flx_gm.sorrowspruce_wood": "Sorrowspruce Wood",
@@ -18,6 +23,7 @@
   "block.flx_gm.stripped_sorrowspruce_log": "Stripped Sorrowspruce Log",
   "block.flx_gm.stripped_sorrowspruce_wood": "Stripped Sorrowspruce Wood",
   "block.flx_gm.sorrowspruce_leaves": "Sorrowspruce Leaves",
+  "block.flx_gm.sorrowspruce_sapling": "Sorrowspruce Sapling",
   "block.flx_gm.primary_dental_pedestal": "Primary Dental Pedestal",
   "block.flx_gm.secondary_dental_pedestal": "Secondary Dental Pedestal",
   "block.flx_gm.tertiary_dental_pedestal": "Tertiary Dental Pedestal",
