@@ -15,6 +15,8 @@ public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource NEUROSAND = makeStateRule(ModBlocks.NEUROSAND.get());
     private static final SurfaceRules.RuleSource NEUROSANDSTONE = makeStateRule(ModBlocks.NEUROSANDSTONE.get());
 
+    private static final SurfaceRules.RuleSource BLUE_ICE = makeStateRule(Blocks.BLUE_ICE);
+
 
     private static final SurfaceRules.RuleSource BEDROCK = makeStateRule(Blocks.BEDROCK);
 
@@ -25,7 +27,8 @@ public class ModSurfaceRules {
                         VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)), BEDROCK),
                 SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.verticalGradient("bedrock_roof",
                         VerticalAnchor.belowTop(5), VerticalAnchor.top())), BEDROCK),
-                SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.aboveBottom(30),2)),SANGUINE),
+                SurfaceRules.ifTrue(SurfaceRules.not(
+                        SurfaceRules.yBlockCheck(VerticalAnchor.aboveBottom(64),1)),SANGUINE),
 
                 // Then apply biome-specific rules
                 SurfaceRules.ifTrue(
@@ -46,12 +49,10 @@ public class ModSurfaceRules {
                 SurfaceRules.ifTrue(
                         SurfaceRules.isBiome(ModBiomes.OPTIC_TUNDRA),
                         SurfaceRules.sequence(
-                                // Obsidian on the undersides of ceilings
+                                SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, BLUE_ICE),
                                 SurfaceRules.ifTrue(SurfaceRules.UNDER_CEILING, TOOTHSLATE),
-                                // Obsidian on the undersides of floors (though less common in Nether caves)
                                 SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, TOOTHSLATE),
                                 SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR, TOOTHSLATE),
-                                // Default to glowstone if not under a ceiling or floor
                                 TOOTHSLATE)),
                 SurfaceRules.ifTrue(
                         SurfaceRules.isBiome(ModBiomes.GASTRIC_SPIRE),

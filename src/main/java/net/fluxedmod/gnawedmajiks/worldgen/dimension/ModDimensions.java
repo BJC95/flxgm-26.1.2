@@ -56,13 +56,13 @@ public class ModDimensions {
                 false,
                 1.0,
                 0,
-                256,
-                256,
+                320,
+                320,
                 blocks.getOrThrow(BlockTags.INFINIBURN_OVERWORLD).key(),
-                1.0f,
+                0.6f,
                 new DimensionType.MonsterSettings(ConstantInt.of(0), 0),
-                DimensionType.Skybox.OVERWORLD,
-                CardinalLighting.Type.DEFAULT,
+                DimensionType.Skybox.NONE,
+                CardinalLighting.Type.NETHER,
                 EnvironmentAttributeMap.builder()
                         .set(EnvironmentAttributes.FOG_COLOR, -6168523)
                         .set(EnvironmentAttributes.SKY_COLOR, OverworldBiomes.calculateSkyColor(2.5f))
@@ -101,7 +101,7 @@ public class ModDimensions {
     }
 
     public static void bootstrapNoise(BootstrapContext<NoiseGeneratorSettings> context) {
-        DensityFunction slide = slideNetherLike(context.lookup(Registries.DENSITY_FUNCTION), 0, 256);
+        DensityFunction slide = slideNetherLike(context.lookup(Registries.DENSITY_FUNCTION), 0, 320);
         DensityFunction fullNoise = postProcess(slide);
         DensityFunction temperature = DensityFunctions.shiftedNoise2d(
                 DensityFunctions.zero(), DensityFunctions.zero(), 0.25,
@@ -116,7 +116,7 @@ public class ModDimensions {
                 context.lookup(Registries.NOISE).getOrThrow(Noises.CONTINENTALNESS_LARGE)
         );
         NoiseGeneratorSettings cavity = new NoiseGeneratorSettings(
-                NoiseSettings.create(0, 256, 1, 2),
+                NoiseSettings.create(0, 320, 1, 2),
                 Blocks.BONE_BLOCK.defaultBlockState(),
                 Blocks.WATER.defaultBlockState(),
                 new NoiseRouter(
@@ -138,7 +138,7 @@ public class ModDimensions {
                 ),
                 ModSurfaceRules.makeCavityRules(),
                 List.of(),
-                32,
+                64,
                 false,
                 false,
                 false,

@@ -18,6 +18,9 @@ public class ModSoundsProvider extends SoundDefinitionsProvider {
                         sound(Identifier.fromNamespaceAndPath(GnawedMajiks.MOD_ID, "cavity/bleak")),
                         sound(Identifier.fromNamespaceAndPath(GnawedMajiks.MOD_ID, "cavity/murcury")),
                         sound(Identifier.fromNamespaceAndPath(GnawedMajiks.MOD_ID, "cavity/sol")),
+                        sound(Identifier.fromNamespaceAndPath(GnawedMajiks.MOD_ID, "cavity/undulawav")),
+                        sound(Identifier.fromNamespaceAndPath(GnawedMajiks.MOD_ID, "cavity/oceanid")),
+                        sound(Identifier.fromNamespaceAndPath(GnawedMajiks.MOD_ID, "cavity/sanguine_sea")),
                         sound(Identifier.fromNamespaceAndPath(GnawedMajiks.MOD_ID, "cavity/tetrachromacy"))
                 ));
 

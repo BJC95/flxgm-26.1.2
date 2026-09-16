@@ -1,6 +1,7 @@
 package net.fluxedmod.gnawedmajiks.worldgen.biome;
 
 import net.fluxedmod.gnawedmajiks.sound.ModSounds;
+import net.fluxedmod.gnawedmajiks.worldgen.ModPlacedFeatures;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.particles.ParticleTypes;
@@ -28,12 +29,8 @@ import java.util.Optional;
 public class ModCavityBiomes {
     public static Biome dentalPlains(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarver) {
         MobSpawnSettings.Builder mobBuilder = new MobSpawnSettings.Builder();
-        mobBuilder.addSpawn(MobCategory.MONSTER, 10, new MobSpawnSettings.SpawnerData(EntityType.GHAST, 1, 1));
-
         BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(placedFeatures, worldCarver)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CavePlacements.LUSH_CAVES_VEGETATION)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherPlacements.GLOWSTONE_EXTRA)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherPlacements.GLOWSTONE);
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, ModPlacedFeatures.TOOTH_SPIKE_PLACED_KEY);
 
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(false).temperature(1.0F).downfall(0.0F)
@@ -41,7 +38,6 @@ public class ModCavityBiomes {
                 .mobSpawnSettings(mobBuilder.build()).generationSettings(biomeBuilder.build())
                 .setAttribute(EnvironmentAttributes.FOG_COLOR, ARGB.color(237,237,200))
                 .setAttribute(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(ModSounds.MUSIC_CAVITY))
-                .setAttribute(EnvironmentAttributes.AMBIENT_PARTICLES, AmbientParticle.of(ParticleTypes.CRIMSON_SPORE, 0.005F))
                 .setAttribute(EnvironmentAttributes.AMBIENT_SOUNDS, new AmbientSounds(
                         Optional.of(SoundEvents.AMBIENT_CRIMSON_FOREST_LOOP),
                         Optional.of(new AmbientMoodSettings(SoundEvents.AMBIENT_BASALT_DELTAS_MOOD, 80000, 8, 2.0D)),
@@ -50,12 +46,9 @@ public class ModCavityBiomes {
     }
     public static Biome opticTundra(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarver) {
         MobSpawnSettings.Builder mobBuilder = new MobSpawnSettings.Builder();
-        mobBuilder.addSpawn(MobCategory.MONSTER, 10, new MobSpawnSettings.SpawnerData(EntityType.GHAST, 1, 1));
 
         BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(placedFeatures, worldCarver)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CavePlacements.LUSH_CAVES_VEGETATION)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherPlacements.GLOWSTONE_EXTRA)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherPlacements.GLOWSTONE);
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.SORROWSPRUCE_TREE_PLACED_KEY);
 
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(false).temperature(1.0F).downfall(0.0F)
@@ -72,7 +65,6 @@ public class ModCavityBiomes {
     }
     public static Biome nueresa(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarver) {
         MobSpawnSettings.Builder mobBuilder = new MobSpawnSettings.Builder();
-        mobBuilder.addSpawn(MobCategory.MONSTER, 10, new MobSpawnSettings.SpawnerData(EntityType.GHAST, 1, 1));
 
         BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(placedFeatures, worldCarver)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CavePlacements.LUSH_CAVES_VEGETATION)
@@ -85,7 +77,7 @@ public class ModCavityBiomes {
                 .mobSpawnSettings(mobBuilder.build()).generationSettings(biomeBuilder.build())
                 .setAttribute(EnvironmentAttributes.FOG_COLOR, ARGB.color(237,237,200))
                 .setAttribute(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(ModSounds.MUSIC_CAVITY))
-                .setAttribute(EnvironmentAttributes.AMBIENT_PARTICLES, AmbientParticle.of(ParticleTypes.CRIMSON_SPORE, 0.005F))
+                .setAttribute(EnvironmentAttributes.AMBIENT_PARTICLES, AmbientParticle.of(ParticleTypes.ASH, 0.01F))
                 .setAttribute(EnvironmentAttributes.AMBIENT_SOUNDS, new AmbientSounds(
                         Optional.of(SoundEvents.AMBIENT_CRIMSON_FOREST_LOOP),
                         Optional.of(new AmbientMoodSettings(SoundEvents.AMBIENT_BASALT_DELTAS_MOOD, 80000, 8, 2.0D)),
@@ -94,7 +86,6 @@ public class ModCavityBiomes {
     }
     public static Biome gastricSpire(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarver) {
         MobSpawnSettings.Builder mobBuilder = new MobSpawnSettings.Builder();
-        mobBuilder.addSpawn(MobCategory.MONSTER, 10, new MobSpawnSettings.SpawnerData(EntityType.GHAST, 1, 1));
 
         BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(placedFeatures, worldCarver)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CavePlacements.LUSH_CAVES_VEGETATION)

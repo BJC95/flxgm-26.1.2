@@ -1,5 +1,6 @@
 package net.fluxedmod.gnawedmajiks.block;
 
+import com.mojang.serialization.MapCodec;
 import net.fluxedmod.gnawedmajiks.GnawedMajiks;
 import net.fluxedmod.gnawedmajiks.block.custom.*;
 import net.fluxedmod.gnawedmajiks.item.ModItems;
@@ -7,6 +8,7 @@ import net.fluxedmod.gnawedmajiks.worldgen.tree.ModTreeGrowers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.ARGB;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
@@ -144,10 +146,20 @@ public class ModBlocks {
                     .explosionResistance(6f)
                     .sound(SoundType.DEEPSLATE)));
     public static final DeferredBlock<Block> NEUROSAND = registerBlock("neurosand",
-            properties -> new Block(properties
+            properties -> new FallingBlock(properties
                     .strength(0.5f)
                     .explosionResistance(0.5f)
-                    .sound(SoundType.SAND)));
+                    .sound(SoundType.SAND)) {
+                @Override
+                protected MapCodec<? extends FallingBlock> codec() {
+                    return null;
+                }
+
+                @Override
+                public int getDustColor(BlockState blockState, BlockGetter level, BlockPos pos) {
+                    return ARGB.color(255,151,228);
+                }
+            });
     public static final DeferredBlock<Block> NEUROSANDSTONE = registerBlock("neurosandstone",
             properties -> new Block(properties
                     .strength(0.8f)

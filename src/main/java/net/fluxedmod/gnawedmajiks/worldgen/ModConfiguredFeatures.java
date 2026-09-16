@@ -1,5 +1,9 @@
 package net.fluxedmod.gnawedmajiks.worldgen;
 
+import com.mojang.datafixers.util.Pair;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.DynamicOps;
 import net.fluxedmod.gnawedmajiks.GnawedMajiks;
 import net.fluxedmod.gnawedmajiks.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
@@ -9,11 +13,11 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.SpikeFeature;
+import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.SpruceFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
@@ -24,8 +28,8 @@ import java.util.List;
 
 public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?,?>> TEST_ORE_KEY = registerKey("test_ore");
-
     public static final ResourceKey<ConfiguredFeature<?, ?>> SORROWSPRUCE_TREE_KEY = registerKey("sorrowspruce_tree_key");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> TOOTH_SPIKE_KEY = registerKey("tooth_spike_key");
 
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
@@ -46,6 +50,11 @@ public class ModConfiguredFeatures {
                 .belowTrunkProvider(BlockStateProvider.simple(Blocks.BLUE_ICE))
                 .build());
 
+        register(context, TOOTH_SPIKE_KEY, Feature.SPIKE, new SpikeConfiguration(
+                ModBlocks.CHARRED_TOOTHSLATE.get().defaultBlockState(),
+                BlockPredicate.matchesBlocks(ModBlocks.TOOTHSLATE.get()),
+                BlockPredicate.matchesBlocks(ModBlocks.CHARRED_TOOTHSLATE.get())
+        ));
     }
 
 
