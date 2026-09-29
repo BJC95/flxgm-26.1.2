@@ -15,6 +15,7 @@ public class ModSounds {
             DeferredRegister.create(BuiltInRegistries.SOUND_EVENT, GnawedMajiks.MOD_ID);
 
     public static final Holder<SoundEvent> MUSIC_CAVITY = registerSoundEvent("music_cavity");
+    public static final Holder<SoundEvent> MUSIC_TUNDRA = registerSoundEvent("music_tundra");
 
 
 

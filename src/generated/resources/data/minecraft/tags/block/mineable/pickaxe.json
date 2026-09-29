@@ -2,6 +2,12 @@
   "values": [
     "flx_gm:primary_dental_pedestal",
     "flx_gm:secondary_dental_pedestal",
-    "flx_gm:tertiary_dental_pedestal"
+    "flx_gm:tertiary_dental_pedestal",
+    "flx_gm:toothslate",
+    "flx_gm:sanguine_toothslate",
+    "flx_gm:charred_toothslate",
+    "flx_gm:frozen_tears",
+    "flx_gm:compressed_frozen_tears",
+    "flx_gm:concentrated_grief"
   ]
 }

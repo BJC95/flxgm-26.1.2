@@ -41,26 +41,24 @@ public class ModCavityBiomes {
                 .setAttribute(EnvironmentAttributes.AMBIENT_SOUNDS, new AmbientSounds(
                         Optional.of(SoundEvents.AMBIENT_CRIMSON_FOREST_LOOP),
                         Optional.of(new AmbientMoodSettings(SoundEvents.AMBIENT_BASALT_DELTAS_MOOD, 80000, 8, 2.0D)),
-                        List.of(new AmbientAdditionsSettings(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_LOOP, 0.0111))))
+                        List.of(new AmbientAdditionsSettings(SoundEvents.AMBIENT_NETHER_WASTES_LOOP, 0.0111))))
                 .build();
     }
     public static Biome opticTundra(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarver) {
         MobSpawnSettings.Builder mobBuilder = new MobSpawnSettings.Builder();
 
         BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(placedFeatures, worldCarver)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.SORROWSPRUCE_TREE_PLACED_KEY);
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.SORROWSPRUCE_TREE_PLACED_KEY)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModPlacedFeatures.GRIEF_PLACED_KEY);
 
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(false).temperature(1.0F).downfall(0.0F)
                 .specialEffects((new BiomeSpecialEffects.Builder().waterColor(0xbdb113)).build())
                 .mobSpawnSettings(mobBuilder.build()).generationSettings(biomeBuilder.build())
-                .setAttribute(EnvironmentAttributes.FOG_COLOR, ARGB.color(237,237,200))
-                .setAttribute(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(ModSounds.MUSIC_CAVITY))
-                .setAttribute(EnvironmentAttributes.AMBIENT_PARTICLES, AmbientParticle.of(ParticleTypes.CRIMSON_SPORE, 0.005F))
-                .setAttribute(EnvironmentAttributes.AMBIENT_SOUNDS, new AmbientSounds(
-                        Optional.of(SoundEvents.AMBIENT_CRIMSON_FOREST_LOOP),
-                        Optional.of(new AmbientMoodSettings(SoundEvents.AMBIENT_BASALT_DELTAS_MOOD, 80000, 8, 2.0D)),
-                        List.of(new AmbientAdditionsSettings(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_LOOP, 0.0111))))
+                .setAttribute(EnvironmentAttributes.FOG_COLOR, ARGB.color(174,244,250))
+                .setAttribute(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(ModSounds.MUSIC_TUNDRA))
+                .setAttribute(EnvironmentAttributes.AMBIENT_PARTICLES, AmbientParticle.of(ParticleTypes.SNOWFLAKE, 0.015F))
+                .setAttribute(EnvironmentAttributes.AMBIENT_LIGHT_COLOR, ARGB.color(64,182,255,253))
                 .build();
     }
     public static Biome nueresa(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarver) {

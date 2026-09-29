@@ -15,7 +15,8 @@ public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource NEUROSAND = makeStateRule(ModBlocks.NEUROSAND.get());
     private static final SurfaceRules.RuleSource NEUROSANDSTONE = makeStateRule(ModBlocks.NEUROSANDSTONE.get());
 
-    private static final SurfaceRules.RuleSource BLUE_ICE = makeStateRule(Blocks.BLUE_ICE);
+    private static final SurfaceRules.RuleSource TEARS = makeStateRule(ModBlocks.FROZEN_TEARS.get());
+    private static final SurfaceRules.RuleSource COMPRESSED_TEARS = makeStateRule(ModBlocks.COMPRESSED_TEARS.get());
 
 
     private static final SurfaceRules.RuleSource BEDROCK = makeStateRule(Blocks.BEDROCK);
@@ -49,11 +50,11 @@ public class ModSurfaceRules {
                 SurfaceRules.ifTrue(
                         SurfaceRules.isBiome(ModBiomes.OPTIC_TUNDRA),
                         SurfaceRules.sequence(
-                                SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, BLUE_ICE),
-                                SurfaceRules.ifTrue(SurfaceRules.UNDER_CEILING, TOOTHSLATE),
-                                SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, TOOTHSLATE),
-                                SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR, TOOTHSLATE),
-                                TOOTHSLATE)),
+                                SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, TEARS),
+                                SurfaceRules.ifTrue(SurfaceRules.UNDER_CEILING, TEARS),
+                                SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, TEARS),
+                                SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR, COMPRESSED_TEARS),
+                                COMPRESSED_TEARS)),
                 SurfaceRules.ifTrue(
                         SurfaceRules.isBiome(ModBiomes.GASTRIC_SPIRE),
                         SurfaceRules.sequence(

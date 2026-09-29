@@ -19,6 +19,7 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -129,7 +130,7 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> SORROWSPRUCE_SAPLING = registerBlock("sorrowspruce_sapling",
             properties -> new ModSaplingBlock(ModTreeGrowers.SORROWSPRUCE, properties.mapColor(MapColor.PLANT).noCollision()
-                    .randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY), () -> Blocks.BLUE_ICE));
+                    .randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY), () -> ModBlocks.FROZEN_TEARS.get()));
     public static final DeferredBlock<Block> POTTED_SORROWSPRUCE_SAPLING = BLOCKS.registerBlock("potted_sorrowspruce_sapling",
             properties -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, SORROWSPRUCE_SAPLING,
                     properties.noOcclusion().instabreak().pushReaction(PushReaction.DESTROY)));
@@ -170,6 +171,21 @@ public class ModBlocks {
                     .strength(1.5f)
                     .explosionResistance(6f)
                     .sound(SoundType.BASALT)));
+    public static final DeferredBlock<Block> FROZEN_TEARS = registerBlock("frozen_tears",
+            properties -> new Block(properties
+                    .strength(0.9f)
+                    .explosionResistance(0.9f)
+                    .sound(SoundType.GLASS)));
+    public static final DeferredBlock<Block> COMPRESSED_TEARS = registerBlock("compressed_frozen_tears",
+            properties -> new Block(properties
+                    .strength(1.9f)
+                    .explosionResistance(2.3f)
+                    .sound(SoundType.BASALT)));
+    public static final DeferredBlock<Block> GRIEF = registerBlock("concentrated_grief",
+            properties -> new Block(properties
+                    .strength(8.5f)
+                    .explosionResistance(6f)
+                    .sound(SoundType.AMETHYST)));
 
     // PEDESTALS
     public static final DeferredBlock<Block> PRI_PEDESTAL = registerBlock("primary_dental_pedestal",

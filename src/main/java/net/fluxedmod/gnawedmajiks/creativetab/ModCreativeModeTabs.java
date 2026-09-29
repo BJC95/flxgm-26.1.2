@@ -32,6 +32,8 @@ public class ModCreativeModeTabs {
                       output.accept(ModBlocks.NEUROSANDSTONE.get());
                       output.accept(ModBlocks.CHARRED_TOOTHSLATE.get());
 
+                      output.accept(ModBlocks.FROZEN_TEARS.get());
+                      output.accept(ModBlocks.COMPRESSED_TEARS.get());
                       output.accept(ModBlocks.SORROWSPRUCE_SAPLING.get());
                       output.accept(ModBlocks.SORROWSPRUCE_LOG.get());
                       output.accept(ModBlocks.SORROWSPRUCE_WOOD.get());
@@ -45,6 +47,7 @@ public class ModCreativeModeTabs {
                       output.accept(ModBlocks.SORROWSPRUCE_FENCE.get());
                       output.accept(ModBlocks.SORROWSPRUCE_FENCE_GATE.get());
                       output.accept(ModBlocks.SORROWSPRUCE_LEAVES.get());
+                      output.accept(ModBlocks.GRIEF.get());
 
                       output.accept(ModBlocks.PRI_PEDESTAL.get());
                       output.accept(ModBlocks.SEC_PEDESTAL.get());

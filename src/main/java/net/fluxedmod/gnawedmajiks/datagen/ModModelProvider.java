@@ -36,7 +36,10 @@ public class ModModelProvider extends ModelProvider {
         blockModels.createTrivialCube(ModBlocks.TOOTHSLATE.get());
         blockModels.createTrivialCube(ModBlocks.SANGUINE_TOOTHSLATE.get());
         blockModels.createTrivialCube(ModBlocks.CHARRED_TOOTHSLATE.get());
+        blockModels.createTrivialCube(ModBlocks.FROZEN_TEARS.get());
+        blockModels.createTrivialCube(ModBlocks.COMPRESSED_TEARS.get());
         blockModels.createTrivialCube(ModBlocks.NEUROSAND.get());
+        blockModels.createTrivialCube(ModBlocks.GRIEF.get());
         createPriPedestal(ModBlocks.NEUROSANDSTONE.get(), blockModels);
 
         blockModels.woodProvider(ModBlocks.SORROWSPRUCE_LOG.get())

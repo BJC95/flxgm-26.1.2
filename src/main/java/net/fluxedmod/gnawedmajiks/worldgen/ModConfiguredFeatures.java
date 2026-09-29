@@ -1,11 +1,8 @@
 package net.fluxedmod.gnawedmajiks.worldgen;
 
-import com.mojang.datafixers.util.Pair;
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.DataResult;
-import com.mojang.serialization.DynamicOps;
 import net.fluxedmod.gnawedmajiks.GnawedMajiks;
 import net.fluxedmod.gnawedmajiks.block.ModBlocks;
+import net.fluxedmod.gnawedmajiks.tag.ModTags;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.Identifier;
@@ -16,7 +13,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.SpikeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.SpruceFoliagePlacer;
@@ -27,16 +23,17 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import java.util.List;
 
 public class ModConfiguredFeatures {
-    public static final ResourceKey<ConfiguredFeature<?,?>> TEST_ORE_KEY = registerKey("test_ore");
+    public static final ResourceKey<ConfiguredFeature<?,?>> GRIEF_KEY = registerKey("grief_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SORROWSPRUCE_TREE_KEY = registerKey("sorrowspruce_tree_key");
     public static final ResourceKey<ConfiguredFeature<?, ?>> TOOTH_SPIKE_KEY = registerKey("tooth_spike_key");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> TEAR_SPIKE_KEY = registerKey("tear_spike_key");
 
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
-        List<OreConfiguration.TargetBlockState> testOre = List.of(
-                OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), ModBlocks.SORROWSPRUCE_PLANKS.get().defaultBlockState()));
+        List<OreConfiguration.TargetBlockState> grief = List.of(
+                OreConfiguration.target(new TagMatchTest(ModTags.Blocks.TEAR_BLOCKS), ModBlocks.SORROWSPRUCE_PLANKS.get().defaultBlockState()));
 
-        register(context, TEST_ORE_KEY, Feature.ORE, new OreConfiguration(testOre, 20));
+        register(context, GRIEF_KEY, Feature.ORE, new OreConfiguration(grief, 5));
 
 
         register(context, SORROWSPRUCE_TREE_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
@@ -47,7 +44,7 @@ public class ModConfiguredFeatures {
                 new SpruceFoliagePlacer(ConstantInt.of(3), ConstantInt.of(4), ConstantInt.of(1)),
 
                 new TwoLayersFeatureSize(1, 0, 2))
-                .belowTrunkProvider(BlockStateProvider.simple(Blocks.BLUE_ICE))
+                .belowTrunkProvider(BlockStateProvider.simple(ModBlocks.FROZEN_TEARS.get()))
                 .build());
 
         register(context, TOOTH_SPIKE_KEY, Feature.SPIKE, new SpikeConfiguration(
@@ -55,6 +52,12 @@ public class ModConfiguredFeatures {
                 BlockPredicate.matchesBlocks(ModBlocks.TOOTHSLATE.get()),
                 BlockPredicate.matchesBlocks(ModBlocks.CHARRED_TOOTHSLATE.get())
         ));
+        register(context, TEAR_SPIKE_KEY, Feature.SPIKE, new SpikeConfiguration(
+                Blocks.BLUE_ICE.defaultBlockState(),
+                BlockPredicate.matchesBlocks(ModBlocks.FROZEN_TEARS.get(), ModBlocks.COMPRESSED_TEARS.get()),
+                BlockPredicate.matchesBlocks(ModBlocks.FROZEN_TEARS.get(), ModBlocks.COMPRESSED_TEARS.get())
+        ));
+
     }
 
 

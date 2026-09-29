@@ -30,6 +30,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.CHARRED_TOOTHSLATE.get());
         dropSelf(ModBlocks.NEUROSAND.get());
         dropSelf(ModBlocks.NEUROSANDSTONE.get());
+        dropSelf(ModBlocks.FROZEN_TEARS.get());
+        dropSelf(ModBlocks.COMPRESSED_TEARS.get());
+        dropSelf(ModBlocks.GRIEF.get());
 
         dropSelf(ModBlocks.SORROWSPRUCE_LOG.get());
         dropSelf(ModBlocks.SORROWSPRUCE_PLANKS.get());

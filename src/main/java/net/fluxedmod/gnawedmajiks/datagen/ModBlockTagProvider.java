@@ -2,6 +2,7 @@ package net.fluxedmod.gnawedmajiks.datagen;
 
 import net.fluxedmod.gnawedmajiks.GnawedMajiks;
 import net.fluxedmod.gnawedmajiks.block.ModBlocks;
+import net.fluxedmod.gnawedmajiks.tag.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
@@ -40,7 +41,17 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.PRI_PEDESTAL.get())
                 .add(ModBlocks.SEC_PEDESTAL.get())
-                .add(ModBlocks.TRI_PEDESTAL.get());
+                .add(ModBlocks.TRI_PEDESTAL.get())
+
+                .add(ModBlocks.TOOTHSLATE.get())
+                .add(ModBlocks.SANGUINE_TOOTHSLATE.get())
+                .add(ModBlocks.CHARRED_TOOTHSLATE.get())
+                .add(ModBlocks.FROZEN_TEARS.get())
+                .add(ModBlocks.COMPRESSED_TEARS.get())
+                .add(ModBlocks.GRIEF.get());
+
+        tag(BlockTags.NEEDS_DIAMOND_TOOL)
+                .add(ModBlocks.GRIEF.get());
 
         tag(BlockTags.PLANKS)
                 .add(ModBlocks.SORROWSPRUCE_PLANKS.get());
@@ -65,5 +76,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.STRIPPED_SORROWSPRUCE_WOOD.get());
         tag(BlockTags.SAPLINGS)
                 .add(ModBlocks.SORROWSPRUCE_SAPLING.get());
+
+        tag(ModTags.Blocks.TEAR_BLOCKS)
+                .add(ModBlocks.FROZEN_TEARS.get())
+                .add(ModBlocks.COMPRESSED_TEARS.get());
     }
 }

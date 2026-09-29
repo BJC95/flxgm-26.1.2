@@ -66,7 +66,7 @@ public class ModDimensions {
                 EnvironmentAttributeMap.builder()
                         .set(EnvironmentAttributes.FOG_COLOR, -6168523)
                         .set(EnvironmentAttributes.SKY_COLOR, OverworldBiomes.calculateSkyColor(2.5f))
-                        .set(EnvironmentAttributes.AMBIENT_LIGHT_COLOR, -4212331)
+                        .set(EnvironmentAttributes.AMBIENT_LIGHT_COLOR, ARGB.color(64,218,222,183))
                         .set(EnvironmentAttributes.CLOUD_COLOR, ARGB.color(0, 0, 0, 0))
                         .build(),
                 timelines.getOrThrow(TimelineTags.IN_OVERWORLD),

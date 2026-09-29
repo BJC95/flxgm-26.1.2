@@ -7,7 +7,6 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BiomeTags;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.common.world.BiomeModifiers;
@@ -22,7 +21,7 @@ public class ModBiomeModifiers {
 
         context.register(ADD_TEST_ORE, new BiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
-                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.TEST_ORE_PLACED_KEY)),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.GRIEF_PLACED_KEY)),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
 
         // Example for individual biomes!

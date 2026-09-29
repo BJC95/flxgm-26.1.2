@@ -23,6 +23,13 @@ public class ModSoundsProvider extends SoundDefinitionsProvider {
                         sound(Identifier.fromNamespaceAndPath(GnawedMajiks.MOD_ID, "cavity/sanguine_sea")),
                         sound(Identifier.fromNamespaceAndPath(GnawedMajiks.MOD_ID, "cavity/tetrachromacy"))
                 ));
+        add(ModSounds.MUSIC_TUNDRA.value(), definition().subtitle("sounds.flx_gm.tundra")
+                .with(
+                        sound(Identifier.fromNamespaceAndPath(GnawedMajiks.MOD_ID, "cavity/undulawav")),
+                        sound(Identifier.fromNamespaceAndPath(GnawedMajiks.MOD_ID, "cavity/oceanid")),
+                        sound(Identifier.fromNamespaceAndPath(GnawedMajiks.MOD_ID, "cavity/bleak")),
+                        sound(Identifier.fromNamespaceAndPath(GnawedMajiks.MOD_ID, "cavity/tears"))
+                ));
 
     }
 }
