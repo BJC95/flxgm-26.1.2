@@ -6,15 +6,21 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.Vec3i;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.VegetationPatchConfiguration;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.placement.*;
 
 import java.util.List;
@@ -24,6 +30,7 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> SORROWSPRUCE_TREE_PLACED_KEY = registerKey("sorrowspruce_tree_placed");
     public static final ResourceKey<PlacedFeature> TOOTH_SPIKE_PLACED_KEY = registerKey("tooth_spike_placed");
     public static final ResourceKey<PlacedFeature> TEAR_SPIKE_PLACED_KEY = registerKey("tear_spike_placed");
+    public static final ResourceKey<PlacedFeature> ROOTMOSS_PLACED_KEY = registerKey("rootmoss_placed");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -41,21 +48,29 @@ public class ModPlacedFeatures {
                         BlockPredicateFilter.forPredicate(
                                 BlockPredicate.wouldSurvive(ModBlocks.SORROWSPRUCE_SAPLING.get().defaultBlockState(),Vec3i.ZERO))
                 ));
-
         register(context, TOOTH_SPIKE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.TOOTH_SPIKE_KEY),
                 List.of(
-                        CountPlacement.of(UniformInt.of(4, 10)),
+                        CountPlacement.of(UniformInt.of(4, 5)),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(128))
                 ));
-        register(context, TEAR_SPIKE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.TOOTH_SPIKE_KEY),
+        register(context, TEAR_SPIKE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.TEAR_SPIKE_KEY),
                 List.of(
                         CountPlacement.of(UniformInt.of(1, 4)),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(128))
                 ));
+
+        register(context, ROOTMOSS_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ROOTMOSS_PATCH),
+                List.of(
+                        CountPlacement.of(UniformInt.of(1, 4)),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        HeightRangePlacement.uniform(VerticalAnchor.absolute(80), VerticalAnchor.absolute(256))
+                ));
+
 
     }
 

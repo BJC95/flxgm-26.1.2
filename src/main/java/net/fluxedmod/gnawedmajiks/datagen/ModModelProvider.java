@@ -6,16 +6,23 @@ import net.fluxedmod.gnawedmajiks.item.ModItems;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
+import net.minecraft.client.data.models.MultiVariant;
+import net.minecraft.client.data.models.blockstates.ConditionBuilder;
+import net.minecraft.client.data.models.blockstates.MultiPartGenerator;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
 import net.minecraft.client.data.models.model.TexturedModel;
+import net.minecraft.client.renderer.block.dispatch.VariantMutator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.MossyCarpetBlock;
+import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.block.state.properties.WallSide;
 
-import static net.minecraft.client.data.models.BlockModelGenerators.createSimpleBlock;
-import static net.minecraft.client.data.models.BlockModelGenerators.plainVariant;
+import java.util.Map;
+
+import static net.minecraft.client.data.models.BlockModelGenerators.*;
 
 public class ModModelProvider extends ModelProvider {
 
@@ -34,13 +41,16 @@ public class ModModelProvider extends ModelProvider {
 
         //BLOCKS
         blockModels.createTrivialCube(ModBlocks.TOOTHSLATE.get());
+        blockModels.createTrivialCube(ModBlocks.FANG_BLOCK.get());
         blockModels.createTrivialCube(ModBlocks.SANGUINE_TOOTHSLATE.get());
         blockModels.createTrivialCube(ModBlocks.CHARRED_TOOTHSLATE.get());
         blockModels.createTrivialCube(ModBlocks.FROZEN_TEARS.get());
         blockModels.createTrivialCube(ModBlocks.COMPRESSED_TEARS.get());
         blockModels.createTrivialCube(ModBlocks.NEUROSAND.get());
         blockModels.createTrivialCube(ModBlocks.GRIEF.get());
-        createPriPedestal(ModBlocks.NEUROSANDSTONE.get(), blockModels);
+        blockModels.createTrivialCube(ModBlocks.ROOTMOSS.get());
+
+        createTopSideBottomBlock(ModBlocks.NEUROSANDSTONE.get(), blockModels);
 
         blockModels.woodProvider(ModBlocks.SORROWSPRUCE_LOG.get())
                 .log(ModBlocks.SORROWSPRUCE_LOG.get()).wood(ModBlocks.SORROWSPRUCE_WOOD.get());
@@ -59,12 +69,12 @@ public class ModModelProvider extends ModelProvider {
         blockModels.createPlantWithDefaultItem(ModBlocks.SORROWSPRUCE_SAPLING.get(),
                 ModBlocks.POTTED_SORROWSPRUCE_SAPLING.get(), BlockModelGenerators.PlantType.TINTED);
 
-        createPriPedestal(ModBlocks.PRI_PEDESTAL.get(), blockModels);
-        createPedestal(ModBlocks.SEC_PEDESTAL.get(), blockModels);
-        createPedestal(ModBlocks.TRI_PEDESTAL.get(), blockModels);
+        createTopSideBottomBlock(ModBlocks.PRI_PEDESTAL.get(), blockModels);
+        createTopSideBlock(ModBlocks.SEC_PEDESTAL.get(), blockModels);
+        createTopSideBlock(ModBlocks.TRI_PEDESTAL.get(), blockModels);
     }
 
-    public static void createPriPedestal(Block block, BlockModelGenerators blockModels) {
+    public static void createTopSideBottomBlock(Block block, BlockModelGenerators blockModels) {
         TextureMapping mapping = new TextureMapping()
                 .put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(block, "_side"))
                 .put(TextureSlot.DOWN, TextureMapping.getBlockTexture(block, "_bottom"))
@@ -76,7 +86,7 @@ public class ModModelProvider extends ModelProvider {
         blockModels.blockStateOutput
                 .accept(createSimpleBlock(block, plainVariant(ModelTemplates.CUBE.create(block, mapping, blockModels.modelOutput))));
     }
-    public static void createPedestal(Block block, BlockModelGenerators blockModels) {
+    public static void createTopSideBlock(Block block, BlockModelGenerators blockModels) {
         TextureMapping mapping = new TextureMapping()
                 .put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(block, "_side"))
                 .put(TextureSlot.DOWN, TextureMapping.getBlockTexture(block, "_top"))
@@ -88,5 +98,4 @@ public class ModModelProvider extends ModelProvider {
         blockModels.blockStateOutput
                 .accept(createSimpleBlock(block, plainVariant(ModelTemplates.CUBE.create(block, mapping, blockModels.modelOutput))));
     }
-
 }

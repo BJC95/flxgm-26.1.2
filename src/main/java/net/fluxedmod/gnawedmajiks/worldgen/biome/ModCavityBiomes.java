@@ -30,6 +30,7 @@ public class ModCavityBiomes {
     public static Biome dentalPlains(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarver) {
         MobSpawnSettings.Builder mobBuilder = new MobSpawnSettings.Builder();
         BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(placedFeatures, worldCarver)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.ROOTMOSS_PLACED_KEY)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, ModPlacedFeatures.TOOTH_SPIKE_PLACED_KEY);
 
         return new Biome.BiomeBuilder()
@@ -49,6 +50,7 @@ public class ModCavityBiomes {
 
         BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(placedFeatures, worldCarver)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.SORROWSPRUCE_TREE_PLACED_KEY)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, ModPlacedFeatures.TEAR_SPIKE_PLACED_KEY)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModPlacedFeatures.GRIEF_PLACED_KEY);
 
         return new Biome.BiomeBuilder()

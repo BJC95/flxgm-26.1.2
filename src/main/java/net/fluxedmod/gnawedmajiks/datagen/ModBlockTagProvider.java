@@ -48,10 +48,14 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.CHARRED_TOOTHSLATE.get())
                 .add(ModBlocks.FROZEN_TEARS.get())
                 .add(ModBlocks.COMPRESSED_TEARS.get())
-                .add(ModBlocks.GRIEF.get());
+                .add(ModBlocks.GRIEF.get())
+                .add(ModBlocks.FANG_BLOCK.get());
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(ModBlocks.GRIEF.get());
+
+        tag(BlockTags.NEEDS_STONE_TOOL)
+                .add(ModBlocks.FANG_BLOCK.get());
 
         tag(BlockTags.PLANKS)
                 .add(ModBlocks.SORROWSPRUCE_PLANKS.get());
@@ -80,5 +84,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(ModTags.Blocks.TEAR_BLOCKS)
                 .add(ModBlocks.FROZEN_TEARS.get())
                 .add(ModBlocks.COMPRESSED_TEARS.get());
+
+        tag(ModTags.Blocks.ROOTMOSS_REPLACEABLE)
+                .add(ModBlocks.TOOTHSLATE.get())
+                .add(ModBlocks.FANG_BLOCK.get());
     }
 }

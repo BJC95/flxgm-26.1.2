@@ -5,11 +5,16 @@ import net.fluxedmod.gnawedmajiks.block.ModBlocks;
 import net.fluxedmod.gnawedmajiks.tag.ModTags;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.features.FeatureUtils;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -17,7 +22,9 @@ import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.SpruceFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
+import net.minecraft.world.level.levelgen.placement.CaveSurface;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 
 import java.util.List;
@@ -27,11 +34,13 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> SORROWSPRUCE_TREE_KEY = registerKey("sorrowspruce_tree_key");
     public static final ResourceKey<ConfiguredFeature<?, ?>> TOOTH_SPIKE_KEY = registerKey("tooth_spike_key");
     public static final ResourceKey<ConfiguredFeature<?, ?>> TEAR_SPIKE_KEY = registerKey("tear_spike_key");
+    public static final ResourceKey<ConfiguredFeature<?,?>> ROOTMOSS_BLOCK = registerKey("rootmoss_block_key");
+    public static final ResourceKey<ConfiguredFeature<?,?>> ROOTMOSS_PATCH = registerKey("rootmoss_patch_key");
 
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         List<OreConfiguration.TargetBlockState> grief = List.of(
-                OreConfiguration.target(new TagMatchTest(ModTags.Blocks.TEAR_BLOCKS), ModBlocks.SORROWSPRUCE_PLANKS.get().defaultBlockState()));
+                OreConfiguration.target(new TagMatchTest(ModTags.Blocks.TEAR_BLOCKS), ModBlocks.GRIEF.get().defaultBlockState()));
 
         register(context, GRIEF_KEY, Feature.ORE, new OreConfiguration(grief, 5));
 
@@ -48,15 +57,44 @@ public class ModConfiguredFeatures {
                 .build());
 
         register(context, TOOTH_SPIKE_KEY, Feature.SPIKE, new SpikeConfiguration(
-                ModBlocks.CHARRED_TOOTHSLATE.get().defaultBlockState(),
+                ModBlocks.FANG_BLOCK.get().defaultBlockState(),
                 BlockPredicate.matchesBlocks(ModBlocks.TOOTHSLATE.get()),
-                BlockPredicate.matchesBlocks(ModBlocks.CHARRED_TOOTHSLATE.get())
+                BlockPredicate.matchesBlocks(ModBlocks.FANG_BLOCK.get())
         ));
         register(context, TEAR_SPIKE_KEY, Feature.SPIKE, new SpikeConfiguration(
                 Blocks.BLUE_ICE.defaultBlockState(),
-                BlockPredicate.matchesBlocks(ModBlocks.FROZEN_TEARS.get(), ModBlocks.COMPRESSED_TEARS.get()),
-                BlockPredicate.matchesBlocks(ModBlocks.FROZEN_TEARS.get(), ModBlocks.COMPRESSED_TEARS.get())
+                BlockPredicate.matchesBlocks(ModBlocks.COMPRESSED_TEARS.get(), ModBlocks.FROZEN_TEARS.get()),
+                BlockPredicate.matchesBlocks(Blocks.BLUE_ICE)
         ));
+        FeatureUtils.register(
+                context,
+                ROOTMOSS_BLOCK,
+                Feature.SIMPLE_BLOCK,
+                new SimpleBlockConfiguration(
+                        new WeightedStateProvider(
+                                WeightedList.<BlockState>builder()
+                                        .add(ModBlocks.ROOTMOSS.get().defaultBlockState(), 25)
+                        )
+                )
+        );
+        FeatureUtils.register(
+                context,
+                ROOTMOSS_PATCH,
+                Feature.VEGETATION_PATCH,
+                new VegetationPatchConfiguration(
+                        ModTags.Blocks.ROOTMOSS_REPLACEABLE,
+                        BlockStateProvider.simple(ModBlocks.ROOTMOSS.get()),
+                        PlacementUtils.inlinePlaced(
+                                context.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(ModConfiguredFeatures.ROOTMOSS_BLOCK)),
+                        CaveSurface.FLOOR,
+                        ConstantInt.of(1),
+                        0.0F,
+                        5,
+                        0.6F,
+                        UniformInt.of(2, 4),
+                        0.75F
+                )
+        );
 
     }
 

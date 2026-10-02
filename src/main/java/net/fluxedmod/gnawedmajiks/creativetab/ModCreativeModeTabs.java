@@ -27,7 +27,10 @@ public class ModCreativeModeTabs {
                       output.accept(ModItems.HYPERDONTA_BOTTLE.get());
 
                       output.accept(ModBlocks.TOOTHSLATE.get());
+                      output.accept(ModBlocks.FANG_BLOCK.get());
+
                       output.accept(ModBlocks.SANGUINE_TOOTHSLATE.get());
+
                       output.accept(ModBlocks.NEUROSAND.get());
                       output.accept(ModBlocks.NEUROSANDSTONE.get());
                       output.accept(ModBlocks.CHARRED_TOOTHSLATE.get());
@@ -48,6 +51,8 @@ public class ModCreativeModeTabs {
                       output.accept(ModBlocks.SORROWSPRUCE_FENCE_GATE.get());
                       output.accept(ModBlocks.SORROWSPRUCE_LEAVES.get());
                       output.accept(ModBlocks.GRIEF.get());
+
+                      output.accept(ModBlocks.ROOTMOSS.get());
 
                       output.accept(ModBlocks.PRI_PEDESTAL.get());
                       output.accept(ModBlocks.SEC_PEDESTAL.get());

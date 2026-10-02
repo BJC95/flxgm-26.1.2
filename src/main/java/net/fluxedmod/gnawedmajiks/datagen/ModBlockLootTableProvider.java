@@ -1,6 +1,7 @@
 package net.fluxedmod.gnawedmajiks.datagen;
 
 import net.fluxedmod.gnawedmajiks.block.ModBlocks;
+import net.fluxedmod.gnawedmajiks.item.ModItems;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -26,6 +27,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(ModBlocks.TOOTHSLATE.get());
+        add(ModBlocks.FANG_BLOCK.get(), block ->
+                createMultipleOreDrops(ModBlocks.FANG_BLOCK.get(), ModItems.EVOKER_FANG.get(), 1, 4));
         dropSelf(ModBlocks.SANGUINE_TOOTHSLATE.get());
         dropSelf(ModBlocks.CHARRED_TOOTHSLATE.get());
         dropSelf(ModBlocks.NEUROSAND.get());
@@ -33,6 +36,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.FROZEN_TEARS.get());
         dropSelf(ModBlocks.COMPRESSED_TEARS.get());
         dropSelf(ModBlocks.GRIEF.get());
+        dropSelf(ModBlocks.ROOTMOSS.get());
 
         dropSelf(ModBlocks.SORROWSPRUCE_LOG.get());
         dropSelf(ModBlocks.SORROWSPRUCE_PLANKS.get());

@@ -141,11 +141,17 @@ public class ModBlocks {
                     .strength(1.5f)
                     .explosionResistance(6f)
                     .sound(SoundType.BONE_BLOCK)));
+    public static final DeferredBlock<Block> FANG_BLOCK = registerBlock("fang_block",
+            properties -> new Block(properties
+                    .strength(3.5f)
+                    .explosionResistance(6f)
+                    .sound(SoundType.BONE_BLOCK)));
     public static final DeferredBlock<Block> SANGUINE_TOOTHSLATE = registerBlock("sanguine_toothslate",
             properties -> new Block(properties
                     .strength(1.5f)
                     .explosionResistance(6f)
                     .sound(SoundType.DEEPSLATE)));
+
     public static final DeferredBlock<Block> NEUROSAND = registerBlock("neurosand",
             properties -> new FallingBlock(properties
                     .strength(0.5f)
@@ -186,6 +192,33 @@ public class ModBlocks {
                     .strength(8.5f)
                     .explosionResistance(6f)
                     .sound(SoundType.AMETHYST)));
+
+    public static final DeferredBlock<Block> ROOTMOSS = registerBlock("rootmoss",
+            properties -> new Block(properties
+                    .strength(0.2f)
+                    .explosionResistance(0.2f)
+                    .sound(SoundType.MOSS))
+            {
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return true;
+                }
+
+                @Override
+                public boolean ignitedByLava(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 100;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 60;
+                }
+            });
 
     // PEDESTALS
     public static final DeferredBlock<Block> PRI_PEDESTAL = registerBlock("primary_dental_pedestal",
